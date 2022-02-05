@@ -1,4 +1,4 @@
-# Android Architecture Example
+# Android Architecture Sample
 
 Android Studio Bumblebee | 2021.1.1
 
