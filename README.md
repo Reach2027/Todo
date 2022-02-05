@@ -1,4 +1,4 @@
-# Todo Example
+# Android Architecture Example
 
 compose + naviagtion + hilt
 
