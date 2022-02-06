@@ -1,5 +1,6 @@
 package com.reach.todo.ui.you
 
+import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.reach.todo.data.remotesource.bing.BingDataSource
@@ -16,6 +17,7 @@ import javax.inject.Inject
  * 2022/2/5  Reach
  */
 
+@Immutable
 data class YouUiState(
     val isLoading: Boolean = true,
     val imageUrl: String = "",

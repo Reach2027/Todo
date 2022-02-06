@@ -1,6 +1,5 @@
 package com.reach.todo.ui
 
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -11,7 +10,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
@@ -25,8 +23,7 @@ import com.reach.todo.ui.theme.TodoTheme
 /**
  * 2022/1/31  Reach
  */
-@Suppress("EXPERIMENTAL_IS_NOT_ENABLED")
-@OptIn(ExperimentalAnimationApi::class)
+@Suppress("EXPERIMENTAL_API_USAGE_FUTURE_ERROR")
 @Composable
 fun TaskApp(mainViewModel: MainViewModel) {
     TodoTheme {
@@ -58,7 +55,7 @@ fun TaskApp(mainViewModel: MainViewModel) {
                 navController,
                 modifier = Modifier
                     .padding(innerPadding)
-                    .animateContentSize()
+
             )
         }
     }
@@ -122,19 +119,6 @@ private fun AppBottomBar(
                 },
                 enabled = !selected
             )
-        }
-    }
-}
-
-fun navToBottomBarRoute(
-    navController: NavHostController,
-    route: String
-) {
-    navController.navigate(route) {
-        launchSingleTop = true
-        restoreState = true
-        popUpTo(navController.graph.findStartDestination().id) {
-            saveState = true
         }
     }
 }

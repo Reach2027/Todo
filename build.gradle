@@ -1,7 +1,7 @@
 buildscript {
     ext {
         compileSdkVersion = 31
-        minSdkVersion = 21
+        minSdkVersion = 23
         targetSdkVersion = 31
         versionCode = 1
         versionName = "0.0.1"
@@ -19,6 +19,8 @@ buildscript {
         coilVersion = '1.4.0'
         retrofitVersion = '2.9.0'
         moshiVersion = '1.13.0'
+
+        junitVersion = '4.13.2'
     }
 
     dependencies {

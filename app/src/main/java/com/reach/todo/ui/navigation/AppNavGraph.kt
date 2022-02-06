@@ -1,6 +1,5 @@
 package com.reach.todo.ui.navigation
 
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -15,6 +14,8 @@ import com.reach.todo.TASK_DETAIL_START
 import com.reach.todo.TASK_ID_ARGUMENT
 import com.reach.todo.ui.edittask.EditTaskScreen
 import com.reach.todo.ui.edittask.EditTaskViewModel
+import com.reach.todo.ui.statistics.StatisticsScreen
+import com.reach.todo.ui.statistics.StatisticsViewModel
 import com.reach.todo.ui.taskdetail.TaskDetailScreen
 import com.reach.todo.ui.taskdetail.TaskDetailViewModel
 import com.reach.todo.ui.tasks.TasksScreen
@@ -46,7 +47,8 @@ fun AppNavGraph(
             )
         }
         composable(AppDestination.STATISTICS) {
-            Text(text = "\uD83D\uDE48\uD83D\uDE48 Sorry \uD83D\uDE48\uD83D\uDE48")
+            val statisticsViewModel = hiltViewModel<StatisticsViewModel>()
+            StatisticsScreen(statisticsViewModel)
         }
         composable(AppDestination.YOU) {
             val youViewModel = hiltViewModel<YouViewModel>()

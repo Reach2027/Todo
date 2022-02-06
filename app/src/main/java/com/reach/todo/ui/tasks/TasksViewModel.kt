@@ -1,5 +1,6 @@
 package com.reach.todo.ui.tasks
 
+import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.reach.todo.data.entity.Task
@@ -16,6 +17,7 @@ import javax.inject.Inject
  * 2022/1/31  Reach
  */
 
+@Immutable
 data class TasksUiState(
     val isLoading: Boolean = true,
     val tasks: List<Task> = emptyList()

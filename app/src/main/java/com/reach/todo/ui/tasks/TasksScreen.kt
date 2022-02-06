@@ -84,7 +84,10 @@ private fun TaskList(
         modifier = Modifier
             .fillMaxSize()
     ) {
-        items(tasks) { task ->
+        items(
+            items = tasks,
+            key = { item: Task -> item.uid }
+        ) { task ->
             val (checked, setChecked) = remember {
                 mutableStateOf(task.finished)
             }
@@ -103,7 +106,7 @@ private fun TaskItem(
 ) {
     Card(
         modifier = Modifier
-            .padding(horizontal = 16.dp, vertical = 12.dp)
+            .padding(16.dp)
             .clickable { navTaskDetail(task.uid) },
         backgroundColor = MaterialTheme.colors.primary,
         elevation = 4.dp
@@ -124,7 +127,7 @@ private fun TaskItem(
                     maxLines = 1,
                     style = MaterialTheme.typography.body1
                 )
-                Spacer(modifier = Modifier.padding(vertical = 8.dp))
+                Spacer(modifier = Modifier.padding(vertical = 12.dp))
                 Text(
                     text = calendarToString(task.createTime),
                     textDecoration =
@@ -150,7 +153,7 @@ private fun TaskItem(
 @Composable
 private fun TasksBodyPreview() {
     TodoTheme {
-        TasksBody(listOf(Task(content = "asd")), { }, { }, { })
+        TasksBody(tasks = listOf(Task(content = "asd")), { }, { }, { })
     }
 }
 

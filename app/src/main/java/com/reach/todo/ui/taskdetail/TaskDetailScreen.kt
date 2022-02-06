@@ -1,8 +1,6 @@
 package com.reach.todo.ui.taskdetail
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
@@ -108,12 +106,11 @@ private fun TaskDetailItem(
         backgroundColor = MaterialTheme.colors.primary,
         elevation = 8.dp,
     ) {
-        Column(modifier = Modifier.padding(16.dp)) {
+        Column(modifier = Modifier.padding(24.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
                     text = calendarToString(task.createTime),
                     modifier = Modifier
-                        .padding(end = 16.dp)
                         .weight(1f),
                     style = MaterialTheme.typography.body1,
                 )
@@ -126,14 +123,11 @@ private fun TaskDetailItem(
                     )
                 }
             }
-
-            val scrollState = rememberScrollState()
+            Spacer(modifier = Modifier.padding(vertical = 10.dp))
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
                     text = task.content,
-                    modifier = Modifier
-                        .weight(1f)
-                        .verticalScroll(scrollState),
+                    modifier = Modifier.weight(1f),
                     style = MaterialTheme.typography.body1,
                     maxLines = 3
                 )
@@ -148,7 +142,6 @@ private fun TaskDetailItem(
                 )
             }
         }
-
 
     }
 }
