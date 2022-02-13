@@ -13,6 +13,10 @@ import androidx.compose.ui.graphics.vector.ImageVector
  * 2022/1/29  Reach
  */
 
+const val FILTER_ALL = 0
+const val FILTER_ACTIVE = 1
+const val FILTER_COMPLETED = 2
+
 const val DATABASE_NAME = "reach_db"
 
 const val TASK_ID_ARGUMENT = "taskId"

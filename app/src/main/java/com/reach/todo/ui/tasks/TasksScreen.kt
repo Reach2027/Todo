@@ -13,8 +13,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.reach.todo.FILTER_ACTIVE
+import com.reach.todo.FILTER_ALL
+import com.reach.todo.FILTER_COMPLETED
 import com.reach.todo.data.entity.Task
 import com.reach.todo.ui.components.AppLoadingBar
+import com.reach.todo.ui.components.AppSelectedButton
 import com.reach.todo.ui.components.NoTask
 import com.reach.todo.ui.theme.TodoTheme
 import com.reach.todo.utils.calendarToString
@@ -37,29 +41,59 @@ fun TasksScreen(
     }
 
     TasksBody(
-        tasks = uiState.tasks,
+        uiState = uiState,
         navTaskDetail = navTaskDetail,
         navAddTask = navAddTask,
-        update = { tasksViewModel.update(it) }
+        update = { tasksViewModel.update(it) },
+        filter = { tasksViewModel.setTaskFilter(it) }
     )
 
 }
 
 @Composable
 private fun TasksBody(
-    tasks: List<Task>,
+    uiState: TasksUiState,
     navTaskDetail: (String) -> Unit,
     navAddTask: () -> Unit,
-    update: (Task) -> Unit
+    update: (Task) -> Unit,
+    filter: (Int) -> Unit
 ) {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.BottomEnd
     ) {
-        TaskList(tasks, update, navTaskDetail)
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Top
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 16.dp)
+            ) {
+                AppSelectedButton(
+                    onClick = { filter(FILTER_ALL) },
+                    modifier = Modifier.padding(start = 8.dp),
+                    enabled = uiState.taskFilter != FILTER_ALL,
+                    text = "All"
+                )
+                AppSelectedButton(
+                    onClick = { filter(FILTER_ACTIVE) },
+                    enabled = uiState.taskFilter != FILTER_ACTIVE,
+                    text = "Active"
+                )
+                AppSelectedButton(
+                    onClick = { filter(FILTER_COMPLETED) },
+                    enabled = uiState.taskFilter != FILTER_COMPLETED,
+                    text = "Completed"
+                )
+            }
 
-        if (tasks.isEmpty()) {
-            NoTask()
+            TaskList(uiState.tasks, update, navTaskDetail)
+        }
+
+        if (uiState.tasks.isEmpty()) {
+            NoTask(uiState.taskFilter)
         }
 
         FloatingActionButton(
@@ -146,14 +180,6 @@ private fun TaskItem(
                 },
             )
         }
-    }
-}
-
-@Preview
-@Composable
-private fun TasksBodyPreview() {
-    TodoTheme {
-        TasksBody(tasks = listOf(Task(content = "asd")), { }, { }, { })
     }
 }
 

@@ -1,8 +1,5 @@
-@file:Suppress("EXPERIMENTAL_IS_NOT_ENABLED")
-
 package com.reach.todo.ui.edittask
 
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.FloatingActionButton
@@ -18,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.reach.todo.data.entity.Task
+import com.reach.todo.ui.MainViewModel
 import com.reach.todo.ui.components.AppAnimatedVisibility
 import com.reach.todo.ui.components.AppLoadingBar
 import com.reach.todo.ui.components.InputText
@@ -29,6 +27,7 @@ import com.reach.todo.ui.theme.TodoTheme
 
 @Composable
 fun EditTaskScreen(
+    mainViewModel: MainViewModel,
     editTaskViewModel: EditTaskViewModel,
     taskId: String,
     navBack: () -> Unit
@@ -49,20 +48,22 @@ fun EditTaskScreen(
         content = rememberSaveable { mutableStateOf("") }
         fabAction = {
             if (content.value.isEmpty()) {
-                // TODO:
+                mainViewModel.showMessage("To Do cannot be empty")
             } else {
                 navBack()
                 editTaskViewModel.save(Task(content = content.value))
+                mainViewModel.showMessage("To Do added")
             }
         }
     } else {
         content = rememberSaveable { mutableStateOf(uiState.task!!.content) }
         fabAction = {
             if (content.value.isEmpty()) {
-                // TODO:
+                mainViewModel.showMessage("To Do cannot be empty")
             } else {
                 navBack()
                 editTaskViewModel.update(content = content.value)
+                mainViewModel.showMessage("To Do saved")
             }
         }
     }
@@ -111,7 +112,6 @@ private fun EditTaskBody(
     }
 }
 
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
 private fun InputTask(
     text: String,

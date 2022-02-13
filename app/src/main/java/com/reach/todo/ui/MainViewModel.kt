@@ -25,6 +25,9 @@ class MainViewModel @Inject constructor() : ViewModel() {
     private val _uiState = MutableStateFlow(MainUiState())
     val uiState = _uiState.asStateFlow()
 
+    private val _snackbarMessage = MutableStateFlow("")
+    val snackbarMessage = _snackbarMessage.asStateFlow()
+
     val bottomSections = BottomSections.values()
     private val bottomRoutes = bottomSections.map { it.route }
 
@@ -42,6 +45,10 @@ class MainViewModel @Inject constructor() : ViewModel() {
                 showBackIcon = !showBottomBar
             )
         }
+    }
+
+    fun showMessage(content: String) {
+        _snackbarMessage.value = content
     }
 
     private fun obtainCurrentTitle(route: String) = when (route) {

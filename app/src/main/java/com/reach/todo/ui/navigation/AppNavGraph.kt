@@ -12,6 +12,7 @@ import com.reach.todo.AppDestination
 import com.reach.todo.EDIT_TASK_START
 import com.reach.todo.TASK_DETAIL_START
 import com.reach.todo.TASK_ID_ARGUMENT
+import com.reach.todo.ui.MainViewModel
 import com.reach.todo.ui.edittask.EditTaskScreen
 import com.reach.todo.ui.edittask.EditTaskViewModel
 import com.reach.todo.ui.statistics.StatisticsScreen
@@ -28,6 +29,7 @@ import com.reach.todo.ui.you.YouViewModel
  */
 @Composable
 fun AppNavGraph(
+    mainViewModel: MainViewModel,
     navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
@@ -65,6 +67,7 @@ fun AppNavGraph(
             }
             val taskDetailViewModel = hiltViewModel<TaskDetailViewModel>()
             TaskDetailScreen(
+                mainViewModel = mainViewModel,
                 taskDetailViewModel = taskDetailViewModel,
                 taskId = taskId,
                 navBack = navController.navBack(),
@@ -81,6 +84,7 @@ fun AppNavGraph(
             }
             val editTaskViewModel = hiltViewModel<EditTaskViewModel>()
             EditTaskScreen(
+                mainViewModel = mainViewModel,
                 editTaskViewModel = editTaskViewModel,
                 taskId = taskId,
                 navBack = navController.navBack()
@@ -89,6 +93,7 @@ fun AppNavGraph(
         composable(AppDestination.NEW_TASK) {
             val editTaskViewModel = hiltViewModel<EditTaskViewModel>()
             EditTaskScreen(
+                mainViewModel = mainViewModel,
                 editTaskViewModel = editTaskViewModel,
                 taskId = "",
                 navBack = navController.navBack()

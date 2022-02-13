@@ -12,7 +12,7 @@ private val DarkColors = darkColors(
     primaryVariant = DarkWhite,
     onPrimary = DarkWhite,
 
-    secondary = Indigo500,
+    secondary = MainBlue,
     secondaryVariant = DarkWhite,
     onSecondary = DarkWhite,
 
@@ -32,7 +32,7 @@ private val LightColors = lightColors(
     primaryVariant = LightBlack,
     onPrimary = LightBlack,
 
-    secondary = Indigo500,
+    secondary = MainBlue,
     secondaryVariant = LightWhite,
     onSecondary = LightWhite,
 

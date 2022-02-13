@@ -49,12 +49,12 @@ fun AnimatedCircle(
         MutableTransitionState(AnimatedCircleProgress.START)
             .apply { targetState = AnimatedCircleProgress.END }
     }
-    val stroke = with(LocalDensity.current) { Stroke(10.dp.toPx()) }
+    val stroke = with(LocalDensity.current) { Stroke(8.dp.toPx()) }
     val transition = updateTransition(currentState, label = "")
     val angleOffset by transition.animateFloat(
         transitionSpec = {
             tween(
-                delayMillis = 500,
+                delayMillis = 100,
                 durationMillis = 900,
                 easing = LinearOutSlowInEasing
             )
@@ -70,7 +70,7 @@ fun AnimatedCircle(
     val shift by transition.animateFloat(
         transitionSpec = {
             tween(
-                delayMillis = 500,
+                delayMillis = 100,
                 durationMillis = 900,
                 easing = CubicBezierEasing(0f, 0.75f, 0.35f, 0.85f)
             )
@@ -78,9 +78,9 @@ fun AnimatedCircle(
         label = ""
     ) { progress ->
         if (progress == AnimatedCircleProgress.START) {
-            0f
+            -180f
         } else {
-            30f
+            0f
         }
     }
 

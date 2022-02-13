@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.reach.todo.data.entity.Task
+import com.reach.todo.ui.MainViewModel
 import com.reach.todo.ui.components.AppLoadingBar
 import com.reach.todo.ui.theme.TodoTheme
 import com.reach.todo.utils.calendarToString
@@ -21,6 +22,7 @@ import com.reach.todo.utils.calendarToString
 
 @Composable
 fun TaskDetailScreen(
+    mainViewModel: MainViewModel,
     taskDetailViewModel: TaskDetailViewModel,
     taskId: String,
     navBack: () -> Unit,
@@ -28,11 +30,11 @@ fun TaskDetailScreen(
 ) {
     val uiState by taskDetailViewModel.uiState.collectAsState()
     taskDetailViewModel.setTaskId(taskId)
+
     if (uiState.isLoading) {
         AppLoadingBar()
         return
     }
-
     if (uiState.task == null) {
         return
     }
@@ -47,6 +49,7 @@ fun TaskDetailScreen(
         delete = {
             taskDetailViewModel.delete(it)
             navBack()
+            mainViewModel.showMessage("To Do was deleted")
         },
         navEdit = navEdit
     )

@@ -8,10 +8,9 @@ buildscript {
 
         coreKtxVersion = '1.7.0'
         activityVersion = '1.4.0'
-        fragmentVersion = '1.4.1'
-        composeVersion = '1.0.5'
-        lifecycleVersion = '2.4.0'
-        navVersion = '2.4.0'
+        composeVersion = '1.1.0'
+        lifecycleVersion = '2.4.1'
+        navVersion = '2.4.1'
         hiltVersion = '2.40.5'
         hiltNavVersion = '1.0.0'
         roomVersion = '2.4.1'
@@ -29,12 +28,12 @@ buildscript {
 
 }// Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
-    id 'com.android.application' version '7.1.0' apply false
-    id 'com.android.library' version '7.1.0' apply false
+    id 'com.android.application' version '7.1.1' apply false
+    id 'com.android.library' version '7.1.1' apply false
 
-    id 'org.jetbrains.kotlin.android' version '1.5.31' apply false
-    id "org.jetbrains.kotlin.kapt" version '1.5.31' apply false
-    id "com.google.devtools.ksp" version "1.5.31-1.0.1" apply false
+    id 'org.jetbrains.kotlin.android' version '1.6.10' apply false
+    id "org.jetbrains.kotlin.kapt" version '1.6.10' apply false
+    id "com.google.devtools.ksp" version "1.6.10-1.0.2" apply false
     // TODO add navigation safe args
 }
 

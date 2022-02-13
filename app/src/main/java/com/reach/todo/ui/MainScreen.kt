@@ -1,12 +1,12 @@
 package com.reach.todo.ui
 
-import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ArrowBackIos
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -19,13 +19,25 @@ import com.reach.todo.ui.navigation.AppNavGraph
 import com.reach.todo.ui.navigation.navBack
 import com.reach.todo.ui.navigation.navToBottomBarRoute
 import com.reach.todo.ui.theme.TodoTheme
+import kotlinx.coroutines.flow.collectLatest
 
 /**
  * 2022/1/31  Reach
  */
-@Suppress("EXPERIMENTAL_API_USAGE_FUTURE_ERROR")
 @Composable
 fun TaskApp(mainViewModel: MainViewModel) {
+
+    val scaffoldState = rememberScaffoldState()
+    // Snackbar
+    LaunchedEffect(scaffoldState.snackbarHostState) {
+        mainViewModel.snackbarMessage.collectLatest { message ->
+            if (message.isNotEmpty()) {
+                scaffoldState.snackbarHostState.showSnackbar(message)
+                mainViewModel.showMessage("")
+            }
+        }
+    }
+
     TodoTheme {
         val navController: NavHostController = rememberNavController()
         val currentRoute: String? =
@@ -36,6 +48,7 @@ fun TaskApp(mainViewModel: MainViewModel) {
 
         Scaffold(
             modifier = Modifier.fillMaxSize(),
+            scaffoldState = scaffoldState,
             topBar = {
                 AppTopBar(
                     showBackIcon = uiState.showBackIcon,
@@ -52,7 +65,8 @@ fun TaskApp(mainViewModel: MainViewModel) {
                 }
             }) { innerPadding ->
             AppNavGraph(
-                navController,
+                mainViewModel = mainViewModel,
+                navController = navController,
                 modifier = Modifier
                     .padding(innerPadding)
 

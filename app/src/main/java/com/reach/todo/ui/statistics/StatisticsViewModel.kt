@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.reach.todo.data.entity.Task
 import com.reach.todo.repository.TaskRepository
+import com.reach.todo.ui.theme.Blue
+import com.reach.todo.ui.theme.Green
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -60,7 +62,7 @@ class StatisticsViewModel @Inject constructor(
                 isLoading = false,
                 noTask = false,
                 proportions = listOf(finishedPercent, 1f - finishedPercent),
-                colors = listOf(Color(0xFF2196F3), Color(0xFF4CAF50)),
+                colors = listOf(Blue, Green),
                 activeSize = all - finishedSize,
                 finishedSize = finishedSize
             )
