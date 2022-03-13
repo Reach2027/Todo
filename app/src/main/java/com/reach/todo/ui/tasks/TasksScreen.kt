@@ -69,7 +69,7 @@ private fun TasksBody(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 16.dp)
+                    .padding(vertical = 8.dp)
             ) {
                 AppSelectedButton(
                     onClick = { filter(FILTER_ALL) },
@@ -140,7 +140,7 @@ private fun TaskItem(
 ) {
     Card(
         modifier = Modifier
-            .padding(16.dp)
+            .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
             .clickable { navTaskDetail(task.uid) },
         backgroundColor = MaterialTheme.colors.primary,
         elevation = 4.dp
