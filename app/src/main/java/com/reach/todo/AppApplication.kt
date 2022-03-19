@@ -7,4 +7,4 @@ import dagger.hilt.android.HiltAndroidApp
  * 2022/1/29  Reach
  */
 @HiltAndroidApp
-class AppApplication: Application()
+class AppApplication : Application()

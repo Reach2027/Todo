@@ -6,9 +6,11 @@ import androidx.lifecycle.viewModelScope
 import com.reach.todo.data.entity.Task
 import com.reach.todo.repository.TaskRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.util.*
@@ -35,18 +37,12 @@ class EditTaskViewModel @Inject constructor(
 
     private val taskId = MutableStateFlow("")
 
+    private val task: Flow<Task> = taskId.flatMapLatest { taskRepository.getTask(it) }
+
     init {
         viewModelScope.launch {
-            taskId.collectLatest { taskId ->
-                if (taskId.isEmpty()) {
-                    return@collectLatest
-                }
-                _uiState.update {
-                    it.copy(
-                        isLoading = false,
-                        task = taskRepository.getTask(taskId)
-                    )
-                }
+            task.collectLatest { task ->
+                _uiState.update { it.copy(isLoading = false, task = task) }
             }
         }
 

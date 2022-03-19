@@ -1,7 +1,14 @@
 package com.reach.todo.ui
 
 import androidx.lifecycle.ViewModel
-import com.reach.todo.*
+import com.reach.todo.AppDestination
+import com.reach.todo.BottomSections
+import com.reach.todo.TITLE_EDIT_TASK
+import com.reach.todo.TITLE_NEW_TASK
+import com.reach.todo.TITLE_STATISTICS
+import com.reach.todo.TITLE_TASKS
+import com.reach.todo.TITLE_TASK_DETAIL
+import com.reach.todo.TITLE_YOU
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

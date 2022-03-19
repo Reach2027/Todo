@@ -6,8 +6,12 @@ import androidx.lifecycle.viewModelScope
 import com.reach.todo.data.entity.Task
 import com.reach.todo.repository.TaskRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -31,8 +35,7 @@ class TaskDetailViewModel @Inject constructor(
 
     private val taskId = MutableStateFlow("")
 
-    @ExperimentalCoroutinesApi
-    val task: Flow<Task> = taskId.flatMapLatest { taskRepository.getTaskFlow(it) }
+    val task: Flow<Task> = taskId.flatMapLatest { taskRepository.getTask(it) }
 
     init {
         viewModelScope.launch {

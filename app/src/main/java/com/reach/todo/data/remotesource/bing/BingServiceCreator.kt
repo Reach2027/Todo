@@ -1,7 +1,7 @@
 package com.reach.todo.data.remotesource.bing
 
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -18,7 +18,7 @@ class BingServiceCreator @Inject constructor() {
 
     private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
+        .addConverterFactory(MoshiConverterFactory.create())
         .build()
 
     fun <T> create(serviceClass: Class<T>): T = retrofit.create(serviceClass)
