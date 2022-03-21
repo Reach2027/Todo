@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import coil.transform.RoundedCornersTransformation
-import com.reach.todo.ui.components.AppLoadingBar
+import com.reach.todo.ui.components.AniLoading
 
 /**
  * 2022/2/4  Reach
@@ -28,7 +28,7 @@ fun YouScreen(youViewModel: YouViewModel) {
     val uiState: YouUiState by youViewModel.uiState.collectAsState()
 
     if (uiState.isLoading) {
-        AppLoadingBar()
+        AniLoading()
         return
     }
     YouBody(
@@ -59,7 +59,7 @@ fun YouBody(
             painter = rememberImagePainter(
                 data = picUrl,
                 builder = {
-                    crossfade(1000)
+                    crossfade(700)
                     transformations(RoundedCornersTransformation(32f))
                     size(1920, 1080)
                 }

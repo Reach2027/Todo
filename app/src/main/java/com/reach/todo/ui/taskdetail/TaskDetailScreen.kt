@@ -29,7 +29,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.reach.todo.data.entity.Task
 import com.reach.todo.ui.MainViewModel
-import com.reach.todo.ui.components.AppLoadingBar
+import com.reach.todo.ui.components.AniLoading
 import com.reach.todo.ui.theme.TodoTheme
 import com.reach.todo.utils.calendarToString
 
@@ -49,7 +49,7 @@ fun TaskDetailScreen(
     taskDetailViewModel.setTaskId(taskId)
 
     if (uiState.isLoading) {
-        AppLoadingBar()
+        AniLoading()
         return
     }
     if (uiState.task == null) {

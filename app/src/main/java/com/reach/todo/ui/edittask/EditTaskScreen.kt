@@ -24,8 +24,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.reach.todo.data.entity.Task
 import com.reach.todo.ui.MainViewModel
+import com.reach.todo.ui.components.AniLoading
 import com.reach.todo.ui.components.AppAnimatedVisibility
-import com.reach.todo.ui.components.AppLoadingBar
 import com.reach.todo.ui.components.InputText
 import com.reach.todo.ui.theme.TodoTheme
 
@@ -44,7 +44,7 @@ fun EditTaskScreen(
     editTaskViewModel.setTaskId(taskId)
 
     if (uiState.isLoading) {
-        AppLoadingBar()
+        AniLoading()
         return
     }
 

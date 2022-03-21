@@ -113,18 +113,3 @@ fun NoTask(taskFilter: Int = FILTER_ALL) {
         )
     }
 }
-
-@Composable
-fun AppLoadingBar() {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        CircularProgressIndicator(
-            modifier = Modifier.size(100.dp),
-            color = MaterialTheme.colors.secondary,
-            strokeWidth = 8.dp
-        )
-
-    }
-}

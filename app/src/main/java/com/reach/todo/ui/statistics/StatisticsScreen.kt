@@ -13,8 +13,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.reach.todo.ui.components.AniLoading
 import com.reach.todo.ui.components.AnimatedCircle
-import com.reach.todo.ui.components.AppLoadingBar
 import com.reach.todo.ui.components.NoTask
 
 /**
@@ -28,7 +28,7 @@ fun StatisticsScreen(
     val uiState by statisticsViewModel.uiState.collectAsState()
 
     if (uiState.isLoading) {
-        AppLoadingBar()
+        AniLoading()
         return
     }
     if (uiState.noTask) {
