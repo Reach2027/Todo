@@ -1,4 +1,4 @@
-# Android Architecture Sample
+# Android Architecture Sample 2022
 
 Android Studio Bumblebee | 2021.1.1 Patch 2
 
