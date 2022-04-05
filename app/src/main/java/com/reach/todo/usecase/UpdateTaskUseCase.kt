@@ -14,25 +14,14 @@
  * limitations under the License.
  */
 
-package com.reach.todo.ui.navigation
+package com.reach.todo.usecase
 
-import androidx.navigation.NavGraph.Companion.findStartDestination
-import androidx.navigation.NavHostController
+import com.reach.todo.repository.TaskRepository
+import javax.inject.Inject
 
 /**
- * 2022/2/4  Reach
+ * 2022/4/2  Reach
  */
-
-fun NavHostController.navToBottomBarRoute(route: String) {
-    navigate(route) {
-        launchSingleTop = true
-        restoreState = true
-        popUpTo(this@navToBottomBarRoute.graph.findStartDestination().id) {
-            saveState = true
-        }
-    }
-}
-
-fun NavHostController.navBack(): () -> Unit {
-    return { navigateUp() }
-}
+class UpdateTaskUseCase @Inject constructor(
+    private val taskRepository: TaskRepository
+)
