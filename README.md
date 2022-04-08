@@ -1,4 +1,4 @@
-# Android Architecture Sample
+# Android Architecture Sample 2022
 
 Android Studio Bumblebee | 2021.1.1 Patch 2
 
@@ -11,7 +11,7 @@ robolectric 4.7.3
 ## Todo App gif
 
 
-<img src="/screenshots/todo.gif" alt="show" width="378" height="798" />
+<img src="screenshots/todo.gif" alt="show" width="378" height="798" />
 
 ## License
 
