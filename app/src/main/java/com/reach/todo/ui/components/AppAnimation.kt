@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-@file:Suppress("EXPERIMENTAL_IS_NOT_ENABLED")
-
 package com.reach.todo.ui.components
 
 import androidx.compose.animation.AnimatedVisibility

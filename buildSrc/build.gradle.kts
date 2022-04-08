@@ -14,21 +14,13 @@
  * limitations under the License.
  */
 
-package com.reach.todo.data.entity
+plugins {
+    `kotlin-dsl`
+    `kotlin-dsl-precompiled-script-plugins`
+}
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import java.util.Calendar
-import java.util.UUID
-
-/**
- * 2022/1/29  Reach
- */
-@Entity(tableName = "tasks")
-data class Task(
-    @PrimaryKey val uid: String = UUID.randomUUID().toString(),
-    val createTime: Calendar = Calendar.getInstance(),
-    var content: String = "",
-    var finished: Boolean = false,
-    var editTime: Calendar = Calendar.getInstance()
-)
+repositories {
+    google()
+    mavenCentral()
+    gradlePluginPortal()
+}
