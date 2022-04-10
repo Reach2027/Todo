@@ -45,10 +45,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.reach.datalayer.local.entity.Task
 import com.reach.todo.FILTER_ACTIVE
 import com.reach.todo.FILTER_ALL
 import com.reach.todo.FILTER_COMPLETED
-import com.reach.todo.data.entity.Task
 import com.reach.todo.ui.components.AniLoading
 import com.reach.todo.ui.components.AppSelectedButton
 import com.reach.todo.ui.components.NoTask

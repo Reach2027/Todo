@@ -14,14 +14,26 @@
  * limitations under the License.
  */
 
-package com.reach.todo.usecase
+package com.reach.datalayer.local
 
-import com.reach.datalayer.repository.TaskRepository
+import com.reach.datalayer.local.daos.TaskDao
+import com.reach.datalayer.local.entity.Task
 import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
- * 2022/4/2  Reach
+ * 2022/1/31  Reach
  */
-class UpdateTaskUseCase @Inject constructor(
-    private val taskRepository: TaskRepository
-)
+@Singleton
+class TaskLocalDataSource @Inject constructor(private val taskDao: TaskDao) {
+
+    fun getTasks() = taskDao.getTasks()
+
+    fun getTaskFlow(uid: String) = taskDao.getTask(uid)
+
+    suspend fun insert(task: Task) = taskDao.insert(task)
+
+    suspend fun update(task: Task) = taskDao.update(task)
+
+    suspend fun delete(task: Task) = taskDao.delete(task)
+}

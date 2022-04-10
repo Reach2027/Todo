@@ -14,14 +14,19 @@
  * limitations under the License.
  */
 
-package com.reach.todo.usecase
+package com.reach.datalayer
 
-import com.reach.datalayer.repository.TaskRepository
-import javax.inject.Inject
+import org.junit.Assert.assertEquals
+import org.junit.Test
 
 /**
- * 2022/4/2  Reach
+ * Example local unit test, which will execute on the development machine (host).
+ *
+ * See [testing documentation](http://d.android.com/tools/testing).
  */
-class UpdateTaskUseCase @Inject constructor(
-    private val taskRepository: TaskRepository
-)
+class ExampleUnitTest {
+    @Test
+    fun addition_isCorrect() {
+        assertEquals(4, 2 + 2)
+    }
+}

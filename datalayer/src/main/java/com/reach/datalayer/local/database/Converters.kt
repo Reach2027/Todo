@@ -14,14 +14,20 @@
  * limitations under the License.
  */
 
-package com.reach.todo.usecase
+package com.reach.datalayer.local.database
 
-import com.reach.datalayer.repository.TaskRepository
-import javax.inject.Inject
+import androidx.room.TypeConverter
+import java.util.Calendar
 
 /**
- * 2022/4/2  Reach
+ * 2022/1/29  Reach
  */
-class UpdateTaskUseCase @Inject constructor(
-    private val taskRepository: TaskRepository
-)
+class Converters {
+
+    @TypeConverter
+    fun calendarToDatestamp(calendar: Calendar): Long = calendar.timeInMillis
+
+    @TypeConverter
+    fun datestampToCalendar(value: Long): Calendar =
+        Calendar.getInstance().apply { timeInMillis = value }
+}

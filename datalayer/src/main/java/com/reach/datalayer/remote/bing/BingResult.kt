@@ -14,14 +14,19 @@
  * limitations under the License.
  */
 
-package com.reach.todo.usecase
+package com.reach.datalayer.remote.bing
 
-import com.reach.datalayer.repository.TaskRepository
-import javax.inject.Inject
+import com.squareup.moshi.JsonClass
 
 /**
- * 2022/4/2  Reach
+ * 2022/2/5  Reach
  */
-class UpdateTaskUseCase @Inject constructor(
-    private val taskRepository: TaskRepository
+@JsonClass(generateAdapter = true)
+data class BingResult(val images: List<BingImage>)
+
+@JsonClass(generateAdapter = true)
+data class BingImage(
+    val url: String = "",
+    val copyright: String = "",
+    val title: String = ""
 )

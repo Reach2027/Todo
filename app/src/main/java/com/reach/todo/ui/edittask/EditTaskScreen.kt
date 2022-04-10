@@ -38,7 +38,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.reach.todo.data.entity.Task
+import com.reach.datalayer.local.entity.Task
 import com.reach.todo.ui.MainViewModel
 import com.reach.todo.ui.components.AniLoading
 import com.reach.todo.ui.components.AppAnimatedVisibility

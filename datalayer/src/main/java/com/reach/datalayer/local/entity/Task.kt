@@ -14,14 +14,21 @@
  * limitations under the License.
  */
 
-package com.reach.todo.usecase
+package com.reach.datalayer.local.entity
 
-import com.reach.datalayer.repository.TaskRepository
-import javax.inject.Inject
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import java.util.Calendar
+import java.util.UUID
 
 /**
- * 2022/4/2  Reach
+ * 2022/1/29  Reach
  */
-class UpdateTaskUseCase @Inject constructor(
-    private val taskRepository: TaskRepository
+@Entity(tableName = "tasks")
+data class Task(
+    @PrimaryKey val uid: String = UUID.randomUUID().toString(),
+    val createTime: Calendar = Calendar.getInstance(),
+    var content: String = "",
+    var finished: Boolean = false,
+    var editTime: Calendar = Calendar.getInstance()
 )

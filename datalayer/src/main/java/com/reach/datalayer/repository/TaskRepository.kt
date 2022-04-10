@@ -14,14 +14,23 @@
  * limitations under the License.
  */
 
-package com.reach.todo.usecase
+package com.reach.datalayer.repository
 
-import com.reach.datalayer.repository.TaskRepository
-import javax.inject.Inject
+import com.reach.datalayer.local.entity.Task
+import kotlinx.coroutines.flow.Flow
 
 /**
- * 2022/4/2  Reach
+ * 2022/3/17  Reach
  */
-class UpdateTaskUseCase @Inject constructor(
-    private val taskRepository: TaskRepository
-)
+interface TaskRepository {
+
+    fun getTasks(): Flow<List<Task>>
+
+    fun getTask(uid: String): Flow<Task>
+
+    suspend fun add(task: Task): Long
+
+    suspend fun update(task: Task): Int
+
+    suspend fun delete(task: Task): Int
+}

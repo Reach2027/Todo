@@ -14,14 +14,21 @@
  * limitations under the License.
  */
 
-package com.reach.todo.usecase
+package com.reach.datalayer.remote.bing
 
-import com.reach.datalayer.repository.TaskRepository
-import javax.inject.Inject
+import retrofit2.http.GET
+import retrofit2.http.Query
 
 /**
- * 2022/4/2  Reach
+ * 2022/2/5  Reach
  */
-class UpdateTaskUseCase @Inject constructor(
-    private val taskRepository: TaskRepository
-)
+interface BingService {
+
+    @GET("/HPImageArchive.aspx")
+    suspend fun getImageUrl(
+        @Query("format") format: String = "js",
+        @Query("idx") idx: Int = 0,
+        @Query("n") n: Int = 1,
+        @Query("mkt") mkt: String = "zh-CN"
+    ): BingResult
+}

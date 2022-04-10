@@ -33,8 +33,6 @@ const val FILTER_ALL = 0
 const val FILTER_ACTIVE = 1
 const val FILTER_COMPLETED = 2
 
-const val DATABASE_NAME = "reach_db"
-
 const val TASK_ID_ARGUMENT = "taskId"
 
 const val TASK_DETAIL_START = "TASK_DETAIL/"

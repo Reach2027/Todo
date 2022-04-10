@@ -17,19 +17,19 @@
 plugins {
     id("com.android.application") version Versions.AGP apply false
     id("com.android.library") version Versions.AGP apply false
-    id("org.jetbrains.kotlin.android") version Versions.KOTLIN apply false
 
-    id("com.google.devtools.ksp") version Versions.KSP
+    id("org.jetbrains.kotlin.android") version Versions.KOTLIN apply false
+    id("org.jetbrains.kotlin.jvm") version Versions.KOTLIN apply false
+
+    id("com.google.devtools.ksp") version Versions.KSP apply false
 
     id("com.diffplug.spotless") version Versions.SPOTLESS
 }
 
 buildscript {
-
     dependencies {
         classpath("com.google.dagger:hilt-android-gradle-plugin:${Versions.HILT}")
     }
-
 }
 
 apply(plugin = "com.diffplug.spotless")
@@ -52,8 +52,4 @@ spotless {
             "package|import|tasks|apply|plugins|include|val|object"
         )
     }
-}
-
-tasks.register<Delete>("clean") {
-    delete(rootProject.buildDir)
 }

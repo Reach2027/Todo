@@ -19,10 +19,10 @@ package com.reach.todo.ui.tasks
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.reach.datalayer.local.entity.Task
+import com.reach.datalayer.repository.TaskRepository
 import com.reach.todo.FILTER_ACTIVE
 import com.reach.todo.FILTER_ALL
-import com.reach.todo.data.entity.Task
-import com.reach.todo.repository.TaskRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-include(":app")
-
 pluginManagement {
     repositories {
         gradlePluginPortal()
@@ -34,3 +32,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Todo"
+
+
+include(":app")
+include(":datalayer")

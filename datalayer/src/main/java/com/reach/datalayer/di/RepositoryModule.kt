@@ -14,14 +14,27 @@
  * limitations under the License.
  */
 
-package com.reach.todo.usecase
+package com.reach.datalayer.di
 
+import com.reach.datalayer.local.TaskLocalDataSource
+import com.reach.datalayer.repository.DefaultTaskRepository
 import com.reach.datalayer.repository.TaskRepository
-import javax.inject.Inject
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 /**
- * 2022/4/2  Reach
+ * 2022/3/17  Reach
  */
-class UpdateTaskUseCase @Inject constructor(
-    private val taskRepository: TaskRepository
-)
+@InstallIn(SingletonComponent::class)
+@Module
+class RepositoryModule {
+
+    @Singleton
+    @Provides
+    fun provideTaskRepository(taskLocalDataSource: TaskLocalDataSource): TaskRepository {
+        return DefaultTaskRepository(taskLocalDataSource)
+    }
+}

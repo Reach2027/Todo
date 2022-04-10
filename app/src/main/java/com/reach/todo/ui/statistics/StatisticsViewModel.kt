@@ -20,8 +20,8 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.reach.todo.data.entity.Task
-import com.reach.todo.repository.TaskRepository
+import com.reach.datalayer.local.entity.Task
+import com.reach.datalayer.repository.TaskRepository
 import com.reach.todo.ui.theme.Blue
 import com.reach.todo.ui.theme.Green
 import dagger.hilt.android.lifecycle.HiltViewModel

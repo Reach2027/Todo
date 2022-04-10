@@ -19,8 +19,8 @@ package com.reach.todo.ui.you
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.reach.todo.data.remotesource.bing.BingDataSource
-import com.reach.todo.data.remotesource.bing.BingServiceCreator.Companion.BASE_URL
+import com.reach.datalayer.remote.BingRemoteDataSource
+import com.reach.datalayer.remote.bing.BingServiceCreator.Companion.BASE_URL
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -42,7 +42,7 @@ data class YouUiState(
 
 @HiltViewModel
 class YouViewModel @Inject constructor(
-    private val bingDataSource: BingDataSource
+    private val bingDataSource: BingRemoteDataSource
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(YouUiState())
