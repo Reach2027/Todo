@@ -61,8 +61,8 @@ fun TaskDetailScreen(
     navBack: () -> Unit,
     navEdit: () -> Unit
 ) {
-    val uiState by taskDetailViewModel.uiState.collectAsState()
     taskDetailViewModel.setTaskId(taskId)
+    val uiState by taskDetailViewModel.uiState.collectAsState()
 
     if (uiState.isLoading) {
         AniLoading()
@@ -93,7 +93,7 @@ private fun TaskDetailBody(
     task: Task,
     checked: Boolean,
     onChecked: (Boolean) -> Unit,
-    update: (Task) -> Unit,
+    update: (Boolean) -> Unit,
     delete: (Task) -> Unit,
     navEdit: () -> Unit
 ) {
@@ -132,7 +132,7 @@ private fun TaskDetailItem(
     task: Task,
     checked: Boolean,
     onChecked: (Boolean) -> Unit,
-    update: (Task) -> Unit,
+    update: (Boolean) -> Unit,
     delete: (Task) -> Unit
 ) {
     Card(
@@ -169,8 +169,7 @@ private fun TaskDetailItem(
                     checked = checked,
                     onCheckedChange = {
                         onChecked(it)
-                        task.finished = it
-                        update(task)
+                        update(it)
                     },
                     modifier = Modifier.size(48.dp)
                 )

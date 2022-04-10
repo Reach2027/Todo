@@ -14,25 +14,30 @@
  * limitations under the License.
  */
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        google()
-        mavenCentral()
-    }
-}
+package com.reach.commonkt.di
 
-@Suppress("UnstableApiUsage")
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
+import javax.inject.Qualifier
 
-rootProject.name = "Todo"
+/**
+ * 2022/4/10  Reach
+ */
 
-include(":app")
-include(":datalayer")
-include(":commonkt")
+@Retention(AnnotationRetention.BINARY)
+@Qualifier
+annotation class DefaultDispatcher
+
+@Retention(AnnotationRetention.BINARY)
+@Qualifier
+annotation class IoDispatcher
+
+@Retention(AnnotationRetention.BINARY)
+@Qualifier
+annotation class MainDispatcher
+
+@Retention(AnnotationRetention.BINARY)
+@Qualifier
+annotation class MainImmediateDispatcher
+
+@Retention(AnnotationRetention.BINARY)
+@Qualifier
+annotation class ApplicationScope

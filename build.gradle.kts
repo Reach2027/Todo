@@ -49,7 +49,7 @@ spotless {
         ktlint(Versions.KT_LINT)
         licenseHeaderFile(
             rootProject.file("spotless/copyright"),
-            "package|import|tasks|apply|plugins|include|val|object"
+            "package|import|tasks|apply|plugins|include|val|object|pluginManagement"
         )
     }
 }

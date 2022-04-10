@@ -16,24 +16,30 @@
 
 package com.reach.datalayer.local
 
+import com.reach.commonkt.di.IoDispatcher
 import com.reach.datalayer.local.daos.TaskDao
 import com.reach.datalayer.local.entity.Task
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.withContext
 
 /**
  * 2022/1/31  Reach
  */
 @Singleton
-class TaskLocalDataSource @Inject constructor(private val taskDao: TaskDao) {
+class TaskLocalDataSource @Inject constructor(
+    @IoDispatcher private val dispatcher: CoroutineDispatcher,
+    private val taskDao: TaskDao
+) {
 
     fun getTasks() = taskDao.getTasks()
 
-    fun getTaskFlow(uid: String) = taskDao.getTask(uid)
+    fun getTask(uid: String) = taskDao.getTask(uid)
 
-    suspend fun insert(task: Task) = taskDao.insert(task)
+    suspend fun insert(task: Task) = withContext(dispatcher) { taskDao.insert(task) }
 
-    suspend fun update(task: Task) = taskDao.update(task)
+    suspend fun update(task: Task) = withContext(dispatcher) { taskDao.update(task) }
 
-    suspend fun delete(task: Task) = taskDao.delete(task)
+    suspend fun delete(task: Task) = withContext(dispatcher) { taskDao.delete(task) }
 }

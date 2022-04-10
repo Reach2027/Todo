@@ -16,12 +16,26 @@
 
 package com.reach.todo.usecase
 
+import com.reach.commonkt.di.ApplicationScope
+import com.reach.datalayer.local.entity.Task
 import com.reach.datalayer.repository.TaskRepository
+import java.util.Calendar
 import javax.inject.Inject
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 /**
  * 2022/4/2  Reach
  */
 class UpdateTaskUseCase @Inject constructor(
+    @ApplicationScope private val coroutineScope: CoroutineScope,
     private val taskRepository: TaskRepository
-)
+) {
+
+    operator fun invoke(task: Task) {
+        coroutineScope.launch {
+            task.editTime = Calendar.getInstance()
+            taskRepository.update(task)
+        }
+    }
+}

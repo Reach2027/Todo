@@ -16,22 +16,21 @@
 
 package com.reach.datalayer.remote
 
+import com.reach.commonkt.di.IoDispatcher
 import com.reach.datalayer.remote.bing.BingResult
 import com.reach.datalayer.remote.bing.BingService
 import com.reach.datalayer.remote.bing.BingServiceCreator
 import javax.inject.Inject
-import javax.inject.Singleton
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
 /**
  * 2022/2/5  Reach
  */
-@Singleton
 class BingRemoteDataSource @Inject constructor(
+    @IoDispatcher private val dispatcher: CoroutineDispatcher,
     private val serviceCreator: BingServiceCreator
 ) {
 
@@ -41,8 +40,5 @@ class BingRemoteDataSource @Inject constructor(
 
     suspend fun getImageUrl(): Flow<BingResult> = flow {
         emit(bingService.getImageUrl())
-    }.flowOn(Dispatchers.IO)
-        .catch { e ->
-            e.printStackTrace()
-        }
+    }.flowOn(dispatcher)
 }

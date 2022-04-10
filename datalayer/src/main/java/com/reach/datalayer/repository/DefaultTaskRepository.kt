@@ -30,7 +30,7 @@ class DefaultTaskRepository @Inject constructor(private val localDataSource: Tas
 
     override fun getTasks() = localDataSource.getTasks()
 
-    override fun getTask(uid: String) = localDataSource.getTaskFlow(uid)
+    override fun getTask(uid: String) = localDataSource.getTask(uid)
 
     override suspend fun add(task: Task) = localDataSource.insert(task)
 

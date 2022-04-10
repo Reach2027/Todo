@@ -14,25 +14,18 @@
  * limitations under the License.
  */
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        google()
-        mavenCentral()
-    }
+package com.reach.todo
+
+import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+
+/**
+ * 2022/4/10  Reach
+ */
+abstract class UiStateViewModel<UiState>(initialState: UiState) : ViewModel() {
+
+    protected val _uiState = MutableStateFlow(initialState)
+
+    val uiState = _uiState.asStateFlow()
 }
-
-@Suppress("UnstableApiUsage")
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-
-rootProject.name = "Todo"
-
-include(":app")
-include(":datalayer")
-include(":commonkt")

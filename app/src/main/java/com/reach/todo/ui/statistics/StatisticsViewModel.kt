@@ -18,16 +18,14 @@ package com.reach.todo.ui.statistics
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.reach.datalayer.local.entity.Task
 import com.reach.datalayer.repository.TaskRepository
+import com.reach.todo.UiStateViewModel
 import com.reach.todo.ui.theme.Blue
 import com.reach.todo.ui.theme.Green
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -49,10 +47,7 @@ data class StatisticsUiState(
 @HiltViewModel
 class StatisticsViewModel @Inject constructor(
     private val taskRepository: TaskRepository
-) : ViewModel() {
-
-    private val _uiState = MutableStateFlow(StatisticsUiState())
-    val uiState = _uiState.asStateFlow()
+) : UiStateViewModel<StatisticsUiState>(StatisticsUiState()) {
 
     init {
         viewModelScope.launch {

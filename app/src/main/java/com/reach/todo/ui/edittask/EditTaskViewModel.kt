@@ -17,16 +17,15 @@
 package com.reach.todo.ui.edittask
 
 import androidx.compose.runtime.Immutable
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.reach.datalayer.local.entity.Task
 import com.reach.datalayer.repository.TaskRepository
+import com.reach.todo.UiStateViewModel
+import com.reach.todo.usecase.UpdateTaskUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import java.util.Calendar
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.update
@@ -45,11 +44,9 @@ data class EditTaskUiState(
 
 @HiltViewModel
 class EditTaskViewModel @Inject constructor(
+    private val updateTaskUseCase: UpdateTaskUseCase,
     private val taskRepository: TaskRepository
-) : ViewModel() {
-
-    private val _uiState = MutableStateFlow(EditTaskUiState())
-    val uiState = _uiState.asStateFlow()
+) : UiStateViewModel<EditTaskUiState>(EditTaskUiState()) {
 
     private val taskId = MutableStateFlow("")
 
@@ -81,11 +78,8 @@ class EditTaskViewModel @Inject constructor(
     }
 
     fun update(content: String) {
-        viewModelScope.launch {
-            val current: Task = _uiState.value.task!!
-            current.content = content
-            current.editTime = Calendar.getInstance()
-            taskRepository.update(current)
-        }
+        val current: Task = _uiState.value.task!!
+        current.content = content
+        updateTaskUseCase(current)
     }
 }

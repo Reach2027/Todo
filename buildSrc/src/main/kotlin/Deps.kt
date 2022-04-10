@@ -20,7 +20,7 @@ object Deps {
     const val COROUTINE_CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.COROUTINE}"
     const val TEST_COROUTINE = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.COROUTINE}"
 
-    const val HILT = "com.google.dagger:hilt-core:${Versions.HILT}"
+    const val HILT_CORE = "com.google.dagger:hilt-core:${Versions.HILT}"
     const val HILT_COMPILER = "com.google.dagger:hilt-compiler:${Versions.HILT}"
 
     const val RETROFIT2 = "com.squareup.retrofit2:retrofit:${Versions.RETROFIT2}"

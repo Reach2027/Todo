@@ -17,19 +17,19 @@
 package com.reach.todo.ui.taskdetail
 
 import androidx.compose.runtime.Immutable
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.reach.datalayer.local.entity.Task
 import com.reach.datalayer.repository.TaskRepository
+import com.reach.todo.UiStateViewModel
+import com.reach.todo.usecase.UpdateTaskUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
  * 2022/2/1  Reach
@@ -43,15 +43,13 @@ data class TaskDetailUiState(
 
 @HiltViewModel
 class TaskDetailViewModel @Inject constructor(
+    private val updateTaskUseCase: UpdateTaskUseCase,
     private val taskRepository: TaskRepository
-) : ViewModel() {
-
-    private val _uiState = MutableStateFlow(TaskDetailUiState())
-    val uiState = _uiState.asStateFlow()
+) : UiStateViewModel<TaskDetailUiState>(TaskDetailUiState()) {
 
     private val taskId = MutableStateFlow("")
 
-    val task: Flow<Task> = taskId.flatMapLatest { taskRepository.getTask(it) }
+    private val task: Flow<Task> = taskId.flatMapLatest { taskRepository.getTask(it) }
 
     init {
         viewModelScope.launch {
@@ -68,10 +66,10 @@ class TaskDetailViewModel @Inject constructor(
         }
     }
 
-    fun update(task: Task) {
-        viewModelScope.launch {
-            taskRepository.update(task)
-        }
+    fun update(finished: Boolean) {
+        val current: Task = _uiState.value.task!!
+        current.finished = finished
+        updateTaskUseCase(current)
     }
 
     fun delete(task: Task) {

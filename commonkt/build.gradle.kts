@@ -14,25 +14,21 @@
  * limitations under the License.
  */
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        google()
-        mavenCentral()
-    }
+plugins {
+    id("java-library")
+    kotlin("jvm")
+    kotlin("kapt")
 }
 
-@Suppress("UnstableApiUsage")
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
+java {
+    sourceCompatibility = Versions.JAVA
+    targetCompatibility = Versions.JAVA
 }
 
-rootProject.name = "Todo"
+dependencies {
+    implementation(Deps.COROUTINE_CORE)
+    testImplementation(Deps.TEST_COROUTINE)
 
-include(":app")
-include(":datalayer")
-include(":commonkt")
+    implementation(Deps.HILT_CORE)
+    kapt(Deps.HILT_COMPILER)
+}

@@ -59,6 +59,8 @@ android {
 }
 
 dependencies {
+    api(project(":commonkt"))
+
     implementation(Deps.COROUTINE_ANDROID)
     testImplementation(Deps.TEST_COROUTINE)
 

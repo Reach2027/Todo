@@ -17,16 +17,15 @@
 package com.reach.todo.ui.tasks
 
 import androidx.compose.runtime.Immutable
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.reach.datalayer.local.entity.Task
 import com.reach.datalayer.repository.TaskRepository
 import com.reach.todo.FILTER_ACTIVE
 import com.reach.todo.FILTER_ALL
+import com.reach.todo.UiStateViewModel
+import com.reach.todo.usecase.UpdateTaskUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -44,11 +43,9 @@ data class TasksUiState(
 
 @HiltViewModel
 class TasksViewModel @Inject constructor(
+    private val updateTaskUseCase: UpdateTaskUseCase,
     private val taskRepository: TaskRepository
-) : ViewModel() {
-
-    private val _uiState = MutableStateFlow(TasksUiState())
-    val uiState = _uiState.asStateFlow()
+) : UiStateViewModel<TasksUiState>(TasksUiState()) {
 
     private var taskFilter: Int = FILTER_ALL
 
@@ -75,9 +72,7 @@ class TasksViewModel @Inject constructor(
     }
 
     fun update(task: Task) {
-        viewModelScope.launch {
-            taskRepository.update(task)
-        }
+        updateTaskUseCase(task)
     }
 
     private fun filterTask(): List<Task> {
