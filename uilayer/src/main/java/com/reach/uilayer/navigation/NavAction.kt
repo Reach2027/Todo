@@ -14,27 +14,25 @@
  * limitations under the License.
  */
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        google()
-        mavenCentral()
+package com.reach.uilayer.navigation
+
+import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavHostController
+
+/**
+ * 2022/2/4  Reach
+ */
+
+fun NavHostController.navToBottomBarRoute(route: String) {
+    navigate(route) {
+        popUpTo(this@navToBottomBarRoute.graph.findStartDestination().id) {
+            saveState = true
+        }
+        launchSingleTop = true
+        restoreState = true
     }
 }
 
-@Suppress("UnstableApiUsage")
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
+fun NavHostController.navBack(): () -> Unit {
+    return { navigateUp() }
 }
-
-rootProject.name = "Todo"
-
-include(":app")
-include(":uilayer")
-include(":domainlayer")
-include(":datalayer")
-include(":commonkt")

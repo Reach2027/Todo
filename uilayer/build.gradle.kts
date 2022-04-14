@@ -15,10 +15,9 @@
  */
 
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     kotlin("android")
     kotlin("kapt")
-    id("com.google.devtools.ksp")
     id("dagger.hilt.android.plugin")
 }
 
@@ -26,24 +25,18 @@ android {
     compileSdk = Versions.COMPILE_SDK
 
     defaultConfig {
-        applicationId = "com.reach.todo"
         minSdk = Versions.MIN_SDK
         targetSdk = Versions.TARGET_SDK
 
-        versionCode = Versions.VERSION_CODE
-        versionName = Versions.VERSION_NAME
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = true
+            isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android.txt"),
+                getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
@@ -65,31 +58,45 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = Versions.COMPOSE
     }
-
-    packagingOptions {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
-}
-
-kapt {
-    correctErrorTypes = true
 }
 
 dependencies {
-    implementation(project(":uilayer"))
+    implementation(project(":domainlayer"))
+
+    implementation(Deps.COROUTINE_ANDROID)
+    testImplementation(Deps.TEST_COROUTINE)
 
     implementation(Deps.HILT_ANDROID)
     kapt(Deps.HILT_COMPILER)
 
+    implementation(Deps.NAVIGATION)
+
+    implementation(Deps.HILT_NAVIGATION_COMPOSE)
+
     implementation(Deps.CORE)
 
     implementation(Deps.ACTIVITY_COMPOSE)
+
+    // compose
+    implementation(Deps.COMPOSE_ANIMATION)
+    implementation(Deps.COMPOSE_COMPILER)
+    implementation(Deps.COMPOSE_FOUNDATION)
+    implementation(Deps.COMPOSE_MATERIAL)
+    implementation(Deps.COMPOSE_MATERIAL_ICON)
+    implementation(Deps.COMPOSE_RUNTIME)
+    implementation(Deps.COMPOSE_UI)
+    implementation(Deps.COMPOSE_UI_TOOL)
+    debugImplementation(Deps.DEBUG_COMPOSE_UI)
+
+    implementation(Deps.ACC_NAV_ANIMATION)
 
     // lifecycle
     implementation(Deps.LIFECYCLE_RUNTIME)
     implementation(Deps.VIEW_MODEL)
     implementation(Deps.VIEW_MODEL_COMPOSE)
     implementation(Deps.VIEW_MODEL_SAVED_STATE)
+
+    // coil
+    implementation(Deps.COIL)
+    implementation(Deps.COIL_COMPOSE)
 }

@@ -30,6 +30,8 @@ object Deps {
     const val MOSHI_CODEGEN = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.MOSHI}"
 
     // Android
+    const val COLLECTION = "androidx.collection:collection-ktx:${Versions.COLLECTION}"
+
     const val COROUTINE_ANDROID =
         "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.COROUTINE}"
 
@@ -54,6 +56,9 @@ object Deps {
     const val COMPOSE_UI = "androidx.compose.ui:ui:${Versions.COMPOSE}"
     const val COMPOSE_UI_TOOL = "androidx.compose.ui:ui-tooling-preview:${Versions.COMPOSE}"
     const val DEBUG_COMPOSE_UI = "androidx.compose.ui:ui-tooling:${Versions.COMPOSE}"
+
+    const val ACC_NAV_ANIMATION =
+        "com.google.accompanist:accompanist-navigation-animation:${Versions.ACC_NAV_ANIMATION}"
 
     const val LIFECYCLE_RUNTIME = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.LIFECYCLE}"
     const val VIEW_MODEL = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.LIFECYCLE}"

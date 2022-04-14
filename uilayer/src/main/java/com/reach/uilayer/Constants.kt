@@ -14,27 +14,12 @@
  * limitations under the License.
  */
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        google()
-        mavenCentral()
-    }
-}
+package com.reach.uilayer
 
-@Suppress("UnstableApiUsage")
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
+/**
+ * 2022/1/29  Reach
+ */
 
-rootProject.name = "Todo"
-
-include(":app")
-include(":uilayer")
-include(":domainlayer")
-include(":datalayer")
-include(":commonkt")
+const val FILTER_ALL = 0
+const val FILTER_ACTIVE = 1
+const val FILTER_COMPLETED = 2

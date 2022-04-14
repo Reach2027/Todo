@@ -61,11 +61,17 @@ android {
 dependencies {
     api(project(":commonkt"))
 
+    implementation(Deps.COLLECTION)
+
     implementation(Deps.COROUTINE_ANDROID)
     testImplementation(Deps.TEST_COROUTINE)
 
     implementation(Deps.HILT_ANDROID)
     kapt(Deps.HILT_COMPILER)
+
+    implementation(Deps.CORE)
+
+    implementation(Deps.COLLECTION)
 
     implementation(Deps.ROOM)
     implementation(Deps.ROOM_RUNTIME)

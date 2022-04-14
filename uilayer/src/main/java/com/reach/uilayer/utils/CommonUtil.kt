@@ -14,27 +14,17 @@
  * limitations under the License.
  */
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        google()
-        mavenCentral()
-    }
+package com.reach.uilayer.utils
+
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
+
+/**
+ * 2022/1/31  Reach
+ */
+
+fun calendarToString(calendar: Calendar): String {
+    return SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.getDefault())
+        .format(calendar.time)
 }
-
-@Suppress("UnstableApiUsage")
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-
-rootProject.name = "Todo"
-
-include(":app")
-include(":uilayer")
-include(":domainlayer")
-include(":datalayer")
-include(":commonkt")

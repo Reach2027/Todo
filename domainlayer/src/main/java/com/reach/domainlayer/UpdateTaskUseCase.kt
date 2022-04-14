@@ -14,23 +14,28 @@
  * limitations under the License.
  */
 
-package com.reach.datalayer.repository
+package com.reach.domainlayer
 
+import com.reach.commonkt.di.ApplicationScope
 import com.reach.datalayer.local.entity.Task
-import kotlinx.coroutines.flow.Flow
+import com.reach.datalayer.repository.TaskRepository
+import java.util.Calendar
+import javax.inject.Inject
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 /**
- * 2022/3/17  Reach
+ * 2022/4/2  Reach
  */
-interface TaskRepository {
+class UpdateTaskUseCase @Inject constructor(
+    @ApplicationScope private val coroutineScope: CoroutineScope,
+    private val taskRepository: TaskRepository
+) {
 
-    fun getTasks(): Flow<List<Task>>
-
-    fun getTask(uid: String): Flow<Task?>
-
-    suspend fun add(task: Task): Long
-
-    suspend fun update(task: Task): Int
-
-    suspend fun delete(task: Task): Int
+    operator fun invoke(task: Task) {
+        coroutineScope.launch {
+            task.editTime = Calendar.getInstance()
+            taskRepository.update(task)
+        }
+    }
 }

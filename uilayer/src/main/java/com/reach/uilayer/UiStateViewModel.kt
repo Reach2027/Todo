@@ -14,27 +14,25 @@
  * limitations under the License.
  */
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        google()
-        mavenCentral()
+package com.reach.uilayer
+
+import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
+
+/**
+ * 2022/4/10  Reach
+ */
+abstract class UiStateViewModel<UiState>(initialState: UiState) : ViewModel() {
+
+    protected val _uiState = MutableStateFlow(initialState)
+
+    val uiState = _uiState.asStateFlow()
+
+    protected inline fun updateUiState(newState: UiState.() -> UiState) {
+        _uiState.update(newState)
     }
+
+    protected fun uiStateValue() = uiState.value
 }
-
-@Suppress("UnstableApiUsage")
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-
-rootProject.name = "Todo"
-
-include(":app")
-include(":uilayer")
-include(":domainlayer")
-include(":datalayer")
-include(":commonkt")

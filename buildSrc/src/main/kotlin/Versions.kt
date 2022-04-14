@@ -63,9 +63,11 @@ object Versions {
     const val MOSHI = "1.13.0"
 
     // Android Dependencies
+    const val COLLECTION = "1.2.0"
     const val CORE = "1.7.0"
     const val ACTIVITY_COMPOSE = "1.4.0"
     const val COMPOSE = "1.1.1"
+    const val ACC_NAV_ANIMATION = "0.23.1"
     const val LIFECYCLE = "2.4.1"
     const val NAVIGATION = "2.4.1"
     const val HILT = "2.41"
