@@ -19,17 +19,16 @@ package com.reach.uilayer.ui.edittask
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.lifecycle.viewModelScope
+import com.reach.base.UiStateViewModel
 import com.reach.datalayer.local.entity.Task
 import com.reach.datalayer.repository.TaskRepository
 import com.reach.domainlayer.UpdateTaskUseCase
-import com.reach.uilayer.UiStateViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 /**
@@ -62,8 +61,8 @@ class EditTaskViewModel @Inject constructor(
                     return@collectLatest
                 }
                 currentTask = task
-                _uiState.update {
-                    it.copy(
+                updateUiState {
+                    copy(
                         isLoading = false,
                         content = TextFieldValue(task.content)
                     )
@@ -74,12 +73,12 @@ class EditTaskViewModel @Inject constructor(
 
     fun setTaskId(uid: String) {
         if (uid.isEmpty()) {
-            _uiState.update { it.copy(isLoading = false, newTask = true) }
+            updateUiState { copy(isLoading = false, newTask = true) }
             return
         }
         if (taskId.value != uid) {
             taskId.value = uid
-            _uiState.update { it.copy(isLoading = true, newTask = false) }
+            updateUiState { copy(isLoading = true, newTask = false) }
         }
     }
 
@@ -89,13 +88,13 @@ class EditTaskViewModel @Inject constructor(
 
     fun save() {
         viewModelScope.launch {
-            val task = Task(content = uiState.value.content.text)
+            val task = Task(content = uiStateValue().content.text)
             taskRepository.add(task)
         }
     }
 
     fun update() {
-        currentTask.content = uiState.value.content.text
+        currentTask.content = uiStateValue().content.text
         updateTaskUseCase(currentTask)
     }
 }

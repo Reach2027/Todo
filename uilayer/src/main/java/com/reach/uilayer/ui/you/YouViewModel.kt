@@ -18,9 +18,9 @@ package com.reach.uilayer.ui.you
 
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.viewModelScope
+import com.reach.base.UiStateViewModel
 import com.reach.datalayer.remote.BingRemoteDataSource
 import com.reach.datalayer.remote.bing.BingServiceCreator.Companion.BASE_URL
-import com.reach.uilayer.UiStateViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.launch

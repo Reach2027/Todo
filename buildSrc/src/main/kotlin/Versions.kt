@@ -46,7 +46,7 @@ object Versions {
 
     const val KSP = "1.6.10-1.0.2"
 
-    const val SPOTLESS = "6.4.1"
+    const val SPOTLESS = "6.4.2"
     const val KT_LINT = "0.45.2"
 
     // SDK

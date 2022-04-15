@@ -19,15 +19,14 @@ package com.reach.uilayer.ui.statistics
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewModelScope
+import com.reach.base.UiStateViewModel
 import com.reach.datalayer.local.entity.Task
 import com.reach.datalayer.repository.TaskRepository
-import com.reach.uilayer.UiStateViewModel
 import com.reach.uilayer.theme.Blue
 import com.reach.uilayer.theme.Green
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 /**
@@ -57,7 +56,7 @@ class StatisticsViewModel @Inject constructor(
 
     private fun updateState(tasks: List<Task>) {
         if (tasks.isEmpty()) {
-            _uiState.update { it.copy(isLoading = false, noTask = true) }
+            updateUiState { copy(isLoading = false, noTask = true) }
             return
         }
         val all = tasks.size
@@ -68,8 +67,8 @@ class StatisticsViewModel @Inject constructor(
             }
         }
         val finishedPercent = finishedSize.toFloat() / all.toFloat()
-        _uiState.update {
-            it.copy(
+        updateUiState {
+            copy(
                 isLoading = false,
                 noTask = false,
                 proportions = listOf(finishedPercent, 1f - finishedPercent),

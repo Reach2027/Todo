@@ -18,12 +18,12 @@ package com.reach.uilayer.ui.tasks
 
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.viewModelScope
+import com.reach.base.UiStateViewModel
 import com.reach.datalayer.local.entity.Task
 import com.reach.datalayer.repository.TaskRepository
 import com.reach.domainlayer.UpdateTaskUseCase
 import com.reach.uilayer.FILTER_ACTIVE
 import com.reach.uilayer.FILTER_ALL
-import com.reach.uilayer.UiStateViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.collectLatest

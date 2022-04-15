@@ -60,6 +60,7 @@ android {
 
 dependencies {
     api(project(":commonkt"))
+    api(project(":base"))
 
     implementation(Deps.COLLECTION)
 

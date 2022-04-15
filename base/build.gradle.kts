@@ -15,35 +15,26 @@
  */
 
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     kotlin("android")
-    kotlin("kapt")
-    id("com.google.devtools.ksp")
-    id("dagger.hilt.android.plugin")
 }
 
 android {
     compileSdk = Versions.COMPILE_SDK
 
     defaultConfig {
-        applicationId = "com.reach.todo"
         minSdk = Versions.MIN_SDK
         targetSdk = Versions.TARGET_SDK
 
-        versionCode = Versions.VERSION_CODE
-        versionName = Versions.VERSION_NAME
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = true
+            isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android.txt"),
+                getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
@@ -57,36 +48,16 @@ android {
     kotlinOptions {
         jvmTarget = Versions.JVM
     }
-
-    buildFeatures {
-        compose = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = Versions.COMPOSE
-    }
-
-    packagingOptions {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
-}
-
-kapt {
-    correctErrorTypes = true
 }
 
 dependencies {
-    implementation(project(":uilayer"))
-    implementation(project(":base"))
 
-    implementation(Deps.HILT_ANDROID)
-    kapt(Deps.HILT_COMPILER)
+    implementation(Deps.COROUTINE_ANDROID)
+    testImplementation(Deps.TEST_COROUTINE)
 
     implementation(Deps.CORE)
 
-    implementation(Deps.ACTIVITY_COMPOSE)
+    implementation(Deps.COLLECTION)
 
     // lifecycle
     implementation(Deps.LIFECYCLE_RUNTIME)

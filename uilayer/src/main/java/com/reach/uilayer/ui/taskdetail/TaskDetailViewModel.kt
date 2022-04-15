@@ -18,17 +18,16 @@ package com.reach.uilayer.ui.taskdetail
 
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.viewModelScope
+import com.reach.base.UiStateViewModel
 import com.reach.datalayer.local.entity.Task
 import com.reach.datalayer.repository.TaskRepository
 import com.reach.domainlayer.UpdateTaskUseCase
-import com.reach.uilayer.UiStateViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 /**
@@ -62,7 +61,7 @@ class TaskDetailViewModel @Inject constructor(
     fun setTaskId(uid: String) {
         if (taskId.value != uid) {
             taskId.value = uid
-            _uiState.update { it.copy(isLoading = true) }
+            updateUiState { copy(isLoading = true) }
         }
     }
 

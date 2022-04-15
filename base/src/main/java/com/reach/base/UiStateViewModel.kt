@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.reach.uilayer
+package com.reach.base
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

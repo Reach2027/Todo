@@ -25,16 +25,17 @@ import javax.inject.Singleton
  * 2022/1/31  Reach
  */
 @Singleton
-class DefaultTaskRepository @Inject constructor(private val localDataSource: TaskLocalDataSource) :
-    TaskRepository {
+class DefaultTaskRepository @Inject constructor(
+    private val taskLocalDataSource: TaskLocalDataSource
+) : TaskRepository {
 
-    override fun getTasks() = localDataSource.getTasks()
+    override fun getTasks() = taskLocalDataSource.getTasks()
 
-    override fun getTask(uid: String) = localDataSource.getTask(uid)
+    override fun getTask(uid: String) = taskLocalDataSource.getTask(uid)
 
-    override suspend fun add(task: Task) = localDataSource.insert(task)
+    override suspend fun add(task: Task) = taskLocalDataSource.insert(task)
 
-    override suspend fun update(task: Task) = localDataSource.update(task)
+    override suspend fun update(task: Task) = taskLocalDataSource.update(task)
 
-    override suspend fun delete(task: Task) = localDataSource.delete(task)
+    override suspend fun delete(task: Task) = taskLocalDataSource.delete(task)
 }

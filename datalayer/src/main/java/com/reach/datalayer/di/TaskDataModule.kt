@@ -16,7 +16,10 @@
 
 package com.reach.datalayer.di
 
+import com.reach.commonkt.di.IoDispatcher
+import com.reach.datalayer.local.DefaultTaskLocalDataSource
 import com.reach.datalayer.local.TaskLocalDataSource
+import com.reach.datalayer.local.daos.TaskDao
 import com.reach.datalayer.repository.DefaultTaskRepository
 import com.reach.datalayer.repository.TaskRepository
 import dagger.Module
@@ -24,13 +27,23 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
+import kotlinx.coroutines.CoroutineDispatcher
 
 /**
  * 2022/3/17  Reach
  */
 @InstallIn(SingletonComponent::class)
 @Module
-class RepositoryModule {
+class TaskDataModule {
+
+    @Singleton
+    @Provides
+    fun provideTaskLocalTaskSource(
+        @IoDispatcher dispatcher: CoroutineDispatcher,
+        taskDao: TaskDao
+    ): TaskLocalDataSource {
+        return DefaultTaskLocalDataSource(dispatcher, taskDao)
+    }
 
     @Singleton
     @Provides
