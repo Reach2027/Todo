@@ -14,23 +14,20 @@
  * limitations under the License.
  */
 
-package com.reach.datalayer.repository
+package com.reach.datalayer.database
 
-import com.reach.datalayer.database.entities.Task
-import kotlinx.coroutines.flow.Flow
+import androidx.room.TypeConverter
+import java.util.Calendar
 
 /**
- * 2022/3/17  Reach
+ * 2022/1/29  Reach
  */
-interface TaskRepository {
+class Converters {
 
-    fun getTasks(): Flow<List<Task>>
+    @TypeConverter
+    fun calendarToDatestamp(calendar: Calendar): Long = calendar.timeInMillis
 
-    fun getTask(uid: String): Flow<Task?>
-
-    suspend fun add(task: Task): Long
-
-    suspend fun update(task: Task): Int
-
-    suspend fun delete(task: Task): Int
+    @TypeConverter
+    fun datestampToCalendar(value: Long): Calendar =
+        Calendar.getInstance().apply { timeInMillis = value }
 }

@@ -18,6 +18,7 @@ plugins {
     id("java-library")
     kotlin("jvm")
     kotlin("kapt")
+    id("com.google.devtools.ksp")
 }
 
 java {
@@ -31,4 +32,10 @@ dependencies {
 
     implementation(Deps.HILT_CORE)
     kapt(Deps.HILT_COMPILER)
+
+    implementation(Deps.RETROFIT2)
+    implementation(Deps.RETROFIT2_MOSHI)
+
+    implementation(Deps.MOSHI)
+    ksp(Deps.MOSHI_CODEGEN)
 }

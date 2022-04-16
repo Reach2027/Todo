@@ -16,28 +16,25 @@
 
 package com.reach.datalayer.remote.bing
 
-import javax.inject.Inject
-import javax.inject.Singleton
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import com.reach.commonkt.RetrofitServiceCreator
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 
 /**
  * 2022/2/5  Reach
  */
+class DefaultBingRemoteDataSource(
+    private val dispatcher: CoroutineDispatcher,
+    private val serviceCreator: RetrofitServiceCreator
+) : BingRemoteDataSource {
 
-@Singleton
-class BingServiceCreator @Inject constructor() {
-
-    companion object {
-        const val BASE_URL = "https://cn.bing.com"
+    private val bingService by lazy {
+        serviceCreator.create<BingService>()
     }
 
-    private val retrofit = Retrofit.Builder()
-        .baseUrl(BASE_URL)
-        .addConverterFactory(MoshiConverterFactory.create())
-        .build()
-
-    fun <T> create(serviceClass: Class<T>): T = retrofit.create(serviceClass)
-
-    inline fun <reified T> create(): T = create(T::class.java)
+    override fun getImageInfo(): Flow<BingResult> = flow {
+        emit(bingService.getImageUrl())
+    }.flowOn(dispatcher)
 }

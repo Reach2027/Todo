@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package com.reach.datalayer.local.database
+package com.reach.datalayer.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.reach.datalayer.local.daos.TaskDao
-import com.reach.datalayer.local.entity.Task
+import com.reach.datalayer.database.daos.TaskDao
+import com.reach.datalayer.database.entities.Task
 
 const val DATABASE_NAME = "reach_db"
 

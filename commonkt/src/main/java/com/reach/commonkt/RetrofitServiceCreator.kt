@@ -14,23 +14,24 @@
  * limitations under the License.
  */
 
-package com.reach.datalayer.repository
+package com.reach.commonkt
 
-import com.reach.datalayer.database.entities.Task
-import kotlinx.coroutines.flow.Flow
+import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 
 /**
- * 2022/3/17  Reach
+ * 2022/4/16  Reach
  */
-interface TaskRepository {
+class RetrofitServiceCreator(baseUrl: String) {
 
-    fun getTasks(): Flow<List<Task>>
+    private val retrofit by lazy {
+        Retrofit.Builder()
+            .baseUrl(baseUrl)
+            .addConverterFactory(MoshiConverterFactory.create())
+            .build()
+    }
 
-    fun getTask(uid: String): Flow<Task?>
+    fun <T> create(serviceClass: Class<T>): T = retrofit.create(serviceClass)
 
-    suspend fun add(task: Task): Long
-
-    suspend fun update(task: Task): Int
-
-    suspend fun delete(task: Task): Int
+    inline fun <reified T> create(): T = create(T::class.java)
 }

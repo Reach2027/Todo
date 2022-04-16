@@ -59,7 +59,8 @@ dependencies {
 
     implementation(Deps.COLLECTION)
 
-    // lifecycle
+    // Lifecycle
+    implementation(Deps.LIFECYCLE_COMMON)
     implementation(Deps.LIFECYCLE_RUNTIME)
     implementation(Deps.VIEW_MODEL)
     implementation(Deps.VIEW_MODEL_COMPOSE)

@@ -14,21 +14,10 @@
  * limitations under the License.
  */
 
-package com.reach.datalayer.local.entity
-
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import java.util.Calendar
-import java.util.UUID
+package com.reach.datalayer
 
 /**
- * 2022/1/29  Reach
+ * 2022/4/16  Reach
  */
-@Entity(tableName = "tasks")
-data class Task(
-    @PrimaryKey val uid: String = UUID.randomUUID().toString(),
-    val createTime: Calendar = Calendar.getInstance(),
-    var content: String = "",
-    var finished: Boolean = false,
-    var editTime: Calendar = Calendar.getInstance()
-)
+
+const val BING_BASE_URL = "https://cn.bing.com"

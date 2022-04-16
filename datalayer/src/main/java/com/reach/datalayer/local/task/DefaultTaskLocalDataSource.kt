@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.reach.datalayer.local
+package com.reach.datalayer.local.task
 
 import com.reach.commonkt.di.IoDispatcher
-import com.reach.datalayer.local.daos.TaskDao
-import com.reach.datalayer.local.entity.Task
+import com.reach.datalayer.database.daos.TaskDao
+import com.reach.datalayer.database.entities.Task
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlinx.coroutines.CoroutineDispatcher

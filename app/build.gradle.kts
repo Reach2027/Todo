@@ -88,7 +88,19 @@ dependencies {
 
     implementation(Deps.ACTIVITY_COMPOSE)
 
-    // lifecycle
+    // Compose
+    implementation(Deps.COMPOSE_COMPILER)
+    implementation(Deps.COMPOSE_ANIMATION)
+    implementation(Deps.COMPOSE_MATERIAL)
+    implementation(Deps.COMPOSE_MATERIAL_ICON)
+    implementation(Deps.COMPOSE_FOUNDATION)
+    implementation(Deps.COMPOSE_UI)
+    implementation(Deps.COMPOSE_UI_TOOL)
+    debugImplementation(Deps.COMPOSE_UI_TOOL)
+    implementation(Deps.COMPOSE_RUNTIME)
+
+    // Lifecycle
+    implementation(Deps.LIFECYCLE_COMMON)
     implementation(Deps.LIFECYCLE_RUNTIME)
     implementation(Deps.VIEW_MODEL)
     implementation(Deps.VIEW_MODEL_COMPOSE)

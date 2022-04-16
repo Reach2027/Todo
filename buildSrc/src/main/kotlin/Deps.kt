@@ -46,20 +46,29 @@ object Deps {
 
     const val ACTIVITY_COMPOSE = "androidx.activity:activity-compose:${Versions.ACTIVITY_COMPOSE}"
 
-    const val COMPOSE_ANIMATION = "androidx.compose.animation:animation:${Versions.COMPOSE}"
     const val COMPOSE_COMPILER = "androidx.compose.compiler:compiler:${Versions.COMPOSE}"
-    const val COMPOSE_FOUNDATION = "androidx.compose.foundation:foundation:${Versions.COMPOSE}"
+    const val COMPOSE_ANIMATION = "androidx.compose.animation:animation:${Versions.COMPOSE}"
+
+    // Material
     const val COMPOSE_MATERIAL = "androidx.compose.material:material:${Versions.COMPOSE}"
+    const val COMPOSE_MATERIAL3 = "androidx.compose.material3:material3:1.0.0-alpha09"
     const val COMPOSE_MATERIAL_ICON =
         "androidx.compose.material:material-icons-extended:${Versions.COMPOSE}"
-    const val COMPOSE_RUNTIME = "androidx.compose.runtime:runtime:${Versions.COMPOSE}"
+
+    // Foundation
+    const val COMPOSE_FOUNDATION = "androidx.compose.foundation:foundation:${Versions.COMPOSE}"
+
+    // UI
     const val COMPOSE_UI = "androidx.compose.ui:ui:${Versions.COMPOSE}"
-    const val COMPOSE_UI_TOOL = "androidx.compose.ui:ui-tooling-preview:${Versions.COMPOSE}"
-    const val DEBUG_COMPOSE_UI = "androidx.compose.ui:ui-tooling:${Versions.COMPOSE}"
+    const val COMPOSE_UI_TOOL = "androidx.compose.ui:ui-tooling:${Versions.COMPOSE}"
+
+    // Runtime
+    const val COMPOSE_RUNTIME = "androidx.compose.runtime:runtime:${Versions.COMPOSE}"
 
     const val ACC_NAV_ANIMATION =
         "com.google.accompanist:accompanist-navigation-animation:${Versions.ACC_NAV_ANIMATION}"
 
+    const val LIFECYCLE_COMMON = "androidx.lifecycle:lifecycle-common-java8:${Versions.LIFECYCLE}"
     const val LIFECYCLE_RUNTIME = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.LIFECYCLE}"
     const val VIEW_MODEL = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.LIFECYCLE}"
     const val VIEW_MODEL_COMPOSE =

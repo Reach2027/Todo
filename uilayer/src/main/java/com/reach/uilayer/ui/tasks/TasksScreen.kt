@@ -46,7 +46,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.reach.datalayer.local.entity.Task
+import com.reach.datalayer.database.entities.Task
 import com.reach.uilayer.AniLoading
 import com.reach.uilayer.AppSelectedButton
 import com.reach.uilayer.FILTER_ACTIVE

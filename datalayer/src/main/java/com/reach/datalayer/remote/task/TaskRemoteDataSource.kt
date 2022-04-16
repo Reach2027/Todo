@@ -14,20 +14,15 @@
  * limitations under the License.
  */
 
-package com.reach.datalayer.local.database
+package com.reach.datalayer.remote.task
 
-import androidx.room.TypeConverter
-import java.util.Calendar
+import com.reach.datalayer.database.entities.Task
+import kotlinx.coroutines.flow.Flow
 
 /**
- * 2022/1/29  Reach
+ * 2022/4/16  Reach
  */
-class Converters {
+interface TaskRemoteDataSource {
 
-    @TypeConverter
-    fun calendarToDatestamp(calendar: Calendar): Long = calendar.timeInMillis
-
-    @TypeConverter
-    fun datestampToCalendar(value: Long): Calendar =
-        Calendar.getInstance().apply { timeInMillis = value }
+    fun getTasks(): Flow<List<Task>>
 }

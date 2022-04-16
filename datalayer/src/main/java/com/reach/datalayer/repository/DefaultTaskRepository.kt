@@ -16,16 +16,13 @@
 
 package com.reach.datalayer.repository
 
-import com.reach.datalayer.local.TaskLocalDataSource
-import com.reach.datalayer.local.entity.Task
-import javax.inject.Inject
-import javax.inject.Singleton
+import com.reach.datalayer.database.entities.Task
+import com.reach.datalayer.local.task.TaskLocalDataSource
 
 /**
  * 2022/1/31  Reach
  */
-@Singleton
-class DefaultTaskRepository @Inject constructor(
+class DefaultTaskRepository(
     private val taskLocalDataSource: TaskLocalDataSource
 ) : TaskRepository {
 

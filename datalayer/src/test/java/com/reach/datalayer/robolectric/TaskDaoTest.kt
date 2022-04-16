@@ -20,9 +20,9 @@ import android.app.Application
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.reach.datalayer.local.daos.TaskDao
+import com.reach.datalayer.database.daos.TaskDao
+import com.reach.datalayer.database.entities.Task
 import com.reach.datalayer.local.database.AppDatabase
-import com.reach.datalayer.local.entity.Task
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers.hasItems

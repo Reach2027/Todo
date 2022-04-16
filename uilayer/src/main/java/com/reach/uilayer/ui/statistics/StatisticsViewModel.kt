@@ -20,7 +20,7 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewModelScope
 import com.reach.base.UiStateViewModel
-import com.reach.datalayer.local.entity.Task
+import com.reach.datalayer.database.entities.Task
 import com.reach.datalayer.repository.TaskRepository
 import com.reach.uilayer.theme.Blue
 import com.reach.uilayer.theme.Green

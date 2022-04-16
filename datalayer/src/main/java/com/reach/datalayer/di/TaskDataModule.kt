@@ -17,9 +17,9 @@
 package com.reach.datalayer.di
 
 import com.reach.commonkt.di.IoDispatcher
-import com.reach.datalayer.local.DefaultTaskLocalDataSource
-import com.reach.datalayer.local.TaskLocalDataSource
-import com.reach.datalayer.local.daos.TaskDao
+import com.reach.datalayer.database.daos.TaskDao
+import com.reach.datalayer.local.task.DefaultTaskLocalDataSource
+import com.reach.datalayer.local.task.TaskLocalDataSource
 import com.reach.datalayer.repository.DefaultTaskRepository
 import com.reach.datalayer.repository.TaskRepository
 import dagger.Module

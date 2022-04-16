@@ -14,23 +14,14 @@
  * limitations under the License.
  */
 
-package com.reach.datalayer.repository
+package com.reach.datalayer.remote.bing
 
-import com.reach.datalayer.database.entities.Task
 import kotlinx.coroutines.flow.Flow
 
 /**
- * 2022/3/17  Reach
+ * 2022/4/16  Reach
  */
-interface TaskRepository {
+interface BingRemoteDataSource {
 
-    fun getTasks(): Flow<List<Task>>
-
-    fun getTask(uid: String): Flow<Task?>
-
-    suspend fun add(task: Task): Long
-
-    suspend fun update(task: Task): Int
-
-    suspend fun delete(task: Task): Int
+    fun getImageInfo(): Flow<BingResult>
 }

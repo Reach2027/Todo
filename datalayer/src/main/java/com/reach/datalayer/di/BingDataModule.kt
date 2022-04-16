@@ -16,31 +16,30 @@
 
 package com.reach.datalayer.di
 
-import android.content.Context
-import com.reach.datalayer.database.AppDatabase
-import com.reach.datalayer.database.daos.TaskDao
+import com.reach.commonkt.RetrofitServiceCreator
+import com.reach.commonkt.di.IoDispatcher
+import com.reach.datalayer.BING_BASE_URL
+import com.reach.datalayer.remote.bing.BingRemoteDataSource
+import com.reach.datalayer.remote.bing.DefaultBingRemoteDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
+import kotlinx.coroutines.CoroutineDispatcher
 
 /**
- * 2022/1/29  Reach
+ * 2022/4/16  Reach
  */
 @InstallIn(SingletonComponent::class)
 @Module
-class DatabaseModule {
+class BingDataModule {
 
     @Singleton
     @Provides
-    fun provideAppDatabase(@ApplicationContext context: Context): AppDatabase {
-        return AppDatabase.getInstance(context)
-    }
-
-    @Provides
-    fun provideTaskDao(database: AppDatabase): TaskDao {
-        return database.taskDao()
+    fun provideBingRemoteDataSource(
+        @IoDispatcher dispatcher: CoroutineDispatcher
+    ): BingRemoteDataSource {
+        return DefaultBingRemoteDataSource(dispatcher, RetrofitServiceCreator(BING_BASE_URL))
     }
 }

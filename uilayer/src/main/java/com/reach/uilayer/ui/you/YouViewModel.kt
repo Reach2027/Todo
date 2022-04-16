@@ -19,8 +19,8 @@ package com.reach.uilayer.ui.you
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.viewModelScope
 import com.reach.base.UiStateViewModel
-import com.reach.datalayer.remote.BingRemoteDataSource
-import com.reach.datalayer.remote.bing.BingServiceCreator.Companion.BASE_URL
+import com.reach.datalayer.BING_BASE_URL
+import com.reach.datalayer.remote.bing.BingRemoteDataSource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.launch
@@ -44,12 +44,12 @@ class YouViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            bingDataSource.getImageUrl().collect { bingResult ->
+            bingDataSource.getImageInfo().collect { bingResult ->
                 val image = bingResult.images[0]
                 updateUiState {
                     copy(
                         isLoading = false,
-                        imageUrl = BASE_URL + image.url,
+                        imageUrl = BING_BASE_URL + image.url,
                         copyright = image.copyright,
                         title = image.title
                     )

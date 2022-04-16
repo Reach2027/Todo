@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package com.reach.datalayer.local
+package com.reach.datalayer.local.task
 
-import com.reach.datalayer.local.entity.Task
+import com.reach.datalayer.database.entities.Task
 import kotlinx.coroutines.flow.Flow
 
 /**

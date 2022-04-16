@@ -17,7 +17,7 @@
 package com.reach.domainlayer
 
 import com.reach.commonkt.di.ApplicationScope
-import com.reach.datalayer.local.entity.Task
+import com.reach.datalayer.database.entities.Task
 import com.reach.datalayer.repository.TaskRepository
 import java.util.Calendar
 import javax.inject.Inject

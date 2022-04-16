@@ -77,26 +77,27 @@ dependencies {
 
     implementation(Deps.ACTIVITY_COMPOSE)
 
-    // compose
-    implementation(Deps.COMPOSE_ANIMATION)
+    // Compose
     implementation(Deps.COMPOSE_COMPILER)
-    implementation(Deps.COMPOSE_FOUNDATION)
+    implementation(Deps.COMPOSE_ANIMATION)
     implementation(Deps.COMPOSE_MATERIAL)
     implementation(Deps.COMPOSE_MATERIAL_ICON)
-    implementation(Deps.COMPOSE_RUNTIME)
+    implementation(Deps.COMPOSE_FOUNDATION)
     implementation(Deps.COMPOSE_UI)
     implementation(Deps.COMPOSE_UI_TOOL)
-    debugImplementation(Deps.DEBUG_COMPOSE_UI)
+    debugImplementation(Deps.COMPOSE_UI_TOOL)
+    implementation(Deps.COMPOSE_RUNTIME)
 
     implementation(Deps.ACC_NAV_ANIMATION)
 
-    // lifecycle
+    // Lifecycle
+    implementation(Deps.LIFECYCLE_COMMON)
     implementation(Deps.LIFECYCLE_RUNTIME)
     implementation(Deps.VIEW_MODEL)
     implementation(Deps.VIEW_MODEL_COMPOSE)
     implementation(Deps.VIEW_MODEL_SAVED_STATE)
 
-    // coil
+    // Coil
     implementation(Deps.COIL)
     implementation(Deps.COIL_COMPOSE)
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.reach.datalayer.local.daos
+package com.reach.datalayer.database.daos
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -22,7 +22,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import com.reach.datalayer.local.entity.Task
+import com.reach.datalayer.database.entities.Task
 import kotlinx.coroutines.flow.Flow
 
 /**

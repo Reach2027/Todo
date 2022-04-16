@@ -20,7 +20,7 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.lifecycle.viewModelScope
 import com.reach.base.UiStateViewModel
-import com.reach.datalayer.local.entity.Task
+import com.reach.datalayer.database.entities.Task
 import com.reach.datalayer.repository.TaskRepository
 import com.reach.domainlayer.UpdateTaskUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

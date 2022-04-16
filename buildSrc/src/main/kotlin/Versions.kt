@@ -69,10 +69,10 @@ object Versions {
     const val COMPOSE = "1.1.1"
     const val ACC_NAV_ANIMATION = "0.23.1"
     const val LIFECYCLE = "2.4.1"
-    const val NAVIGATION = "2.4.1"
+    const val NAVIGATION = "2.4.2"
     const val HILT = "2.41"
     const val HILT_NAVIGATION_COMPOSE = "1.0.0"
-    const val ROOM = "2.4.1"
+    const val ROOM = "2.4.2"
     const val COIL = "1.4.0"
 
     // Test

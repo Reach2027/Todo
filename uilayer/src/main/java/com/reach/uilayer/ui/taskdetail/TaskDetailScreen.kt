@@ -41,7 +41,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.reach.datalayer.local.entity.Task
+import com.reach.datalayer.database.entities.Task
 import com.reach.uilayer.AniLoading
 import com.reach.uilayer.theme.TodoTheme
 import com.reach.uilayer.ui.activity.ActivityViewModel
