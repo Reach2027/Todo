@@ -21,10 +21,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.reach.datalayer.DATABASE_NAME
 import com.reach.datalayer.database.daos.TaskDao
 import com.reach.datalayer.database.entities.Task
-
-const val DATABASE_NAME = "reach_db"
 
 /**
  * 2022/1/29  Reach

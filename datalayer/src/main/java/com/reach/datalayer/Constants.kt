@@ -21,3 +21,5 @@ package com.reach.datalayer
  */
 
 const val BING_BASE_URL = "https://cn.bing.com"
+
+const val DATABASE_NAME = "reach_db"
