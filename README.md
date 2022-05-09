@@ -1,10 +1,12 @@
 # Android Architecture Sample 2022
 
-Android Studio Bumblebee | 2021.1.1 Patch 2
+Android Studio Bumblebee | 2021.1.1 Patch 3
 
-AGP 7.1.2
+AGP 7.1.3
 
-compose 1.1.0 + naviagtion 2.4.1 + hilt 2.41 + coil 1.4.0
+Kotlin 1.6.10
+
+Compose 1.1.0 + Naviagtion 2.4.2 + Hilt 2.41
 
 robolectric 4.7.3
 
