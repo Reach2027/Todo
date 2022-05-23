@@ -29,8 +29,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberImagePainter
+import androidx.hilt.navigation.compose.hiltViewModel
+import coil.compose.rememberAsyncImagePainter
+import coil.request.ImageRequest
 import coil.transform.RoundedCornersTransformation
 import com.reach.uilayer.AniLoading
 
@@ -39,7 +42,7 @@ import com.reach.uilayer.AniLoading
  */
 
 @Composable
-fun YouScreen(youViewModel: YouViewModel) {
+fun YouScreen(youViewModel: YouViewModel = hiltViewModel()) {
 
     val uiState: YouUiState by youViewModel.uiState.collectAsState()
 
@@ -48,6 +51,7 @@ fun YouScreen(youViewModel: YouViewModel) {
         return
     }
     YouBody(
+        uiState.imageDate,
         uiState.imageUrl,
         uiState.title,
         uiState.copyright
@@ -56,6 +60,7 @@ fun YouScreen(youViewModel: YouViewModel) {
 
 @Composable
 fun YouBody(
+    picDate: String,
     picUrl: String,
     picTitle: String,
     picCopyright: String
@@ -67,25 +72,31 @@ fun YouBody(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = picTitle,
+            text = picDate,
             modifier = Modifier.fillMaxWidth(),
             style = MaterialTheme.typography.body1
         )
         Image(
-            painter = rememberImagePainter(
-                data = picUrl,
-                builder = {
-                    crossfade(700)
-                    transformations(RoundedCornersTransformation(32f))
-                    size(1920, 1080)
-                }
+            painter = rememberAsyncImagePainter(
+                ImageRequest.Builder(LocalContext.current)
+                    .data(data = picUrl)
+                    .crossfade(700)
+                    .transformations(RoundedCornersTransformation(32f))
+                    .size(1920, 1080)
+                    .build()
             ),
             contentDescription = "Bing image of the day",
             modifier = Modifier
                 .wrapContentWidth()
                 .padding(top = 16.dp),
         )
-
+        Text(
+            text = picTitle,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 16.dp),
+            style = MaterialTheme.typography.body1
+        )
         Text(
             text = picCopyright,
             modifier = Modifier

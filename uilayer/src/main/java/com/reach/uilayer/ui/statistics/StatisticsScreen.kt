@@ -29,6 +29,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.reach.uilayer.AniLoading
 import com.reach.uilayer.AnimatedCircle
 import com.reach.uilayer.NoTask
@@ -39,7 +40,7 @@ import com.reach.uilayer.NoTask
 
 @Composable
 fun StatisticsScreen(
-    statisticsViewModel: StatisticsViewModel,
+    statisticsViewModel: StatisticsViewModel = hiltViewModel(),
 ) {
     val uiState by statisticsViewModel.uiState.collectAsState()
 

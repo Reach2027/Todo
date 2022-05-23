@@ -20,6 +20,6 @@ package com.reach.uilayer
  * 2022/1/29  Reach
  */
 
-const val FILTER_ALL = 0
-const val FILTER_ACTIVE = 1
-const val FILTER_COMPLETED = 2
+internal const val FILTER_ALL = 0
+internal const val FILTER_ACTIVE = 1
+internal const val FILTER_COMPLETED = 2

@@ -21,6 +21,8 @@ plugins {
 }
 
 android {
+    namespace = "com.reach.domainlayer"
+
     compileSdk = Versions.COMPILE_SDK
 
     defaultConfig {

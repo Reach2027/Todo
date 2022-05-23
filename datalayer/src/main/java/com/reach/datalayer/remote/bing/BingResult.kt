@@ -28,5 +28,6 @@ data class BingResult(val images: List<BingImage>)
 data class BingImage(
     val url: String = "",
     val copyright: String = "",
-    val title: String = ""
+    val title: String = "",
+    val enddate: String = ""
 )

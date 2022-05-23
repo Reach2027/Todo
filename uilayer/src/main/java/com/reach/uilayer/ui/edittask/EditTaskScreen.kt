@@ -36,6 +36,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.reach.uilayer.AniLoading
 import com.reach.uilayer.AppAnimatedVisibility
 import com.reach.uilayer.InputText
@@ -49,7 +50,7 @@ import com.reach.uilayer.ui.activity.ActivityViewModel
 @Composable
 fun EditTaskScreen(
     activityViewModel: ActivityViewModel,
-    editTaskViewModel: EditTaskViewModel,
+    editTaskViewModel: EditTaskViewModel = hiltViewModel(),
     taskId: String,
     navBack: () -> Unit
 ) {

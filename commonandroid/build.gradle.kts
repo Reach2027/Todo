@@ -20,6 +20,8 @@ plugins {
 }
 
 android {
+    namespace = "com.reach.commonandroid"
+
     compileSdk = Versions.COMPILE_SDK
 
     defaultConfig {

@@ -41,6 +41,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.reach.datalayer.database.entities.Task
 import com.reach.uilayer.AniLoading
 import com.reach.uilayer.theme.TodoTheme
@@ -54,7 +55,7 @@ import com.reach.uilayer.utils.calendarToString
 @Composable
 fun TaskDetailScreen(
     activityViewModel: ActivityViewModel,
-    taskDetailViewModel: TaskDetailViewModel,
+    taskDetailViewModel: TaskDetailViewModel = hiltViewModel(),
     taskId: String,
     navBack: () -> Unit,
     navEdit: () -> Unit
@@ -177,7 +178,7 @@ private fun TaskDetailItemPreview() {
     }
 }
 
-@Preview
+@Preview(device = "id:pixel_6_pro")
 @Composable
 private fun TaskDetailBodyPreview() {
     TodoTheme {

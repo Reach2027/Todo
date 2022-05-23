@@ -16,7 +16,7 @@
 
 package com.reach.uilayer.ui.activity
 
-import com.reach.base.UiStateViewModel
+import com.reach.commonandroid.UiStateViewModel
 import com.reach.uilayer.navigation.AppDestination
 import com.reach.uilayer.navigation.BottomSections
 import com.reach.uilayer.navigation.TITLE_EDIT_TASK

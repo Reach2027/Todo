@@ -23,6 +23,8 @@ plugins {
 }
 
 android {
+    namespace = "com.reach.todo"
+
     compileSdk = Versions.COMPILE_SDK
 
     defaultConfig {
@@ -79,7 +81,10 @@ kapt {
 
 dependencies {
     implementation(project(":uilayer"))
-    implementation(project(":base"))
+    implementation(project(":commonandroid"))
+
+    implementation(Deps.COROUTINE_ANDROID)
+    testImplementation(Deps.TEST_COROUTINE)
 
     implementation(Deps.HILT_ANDROID)
     kapt(Deps.HILT_COMPILER)
@@ -105,4 +110,11 @@ dependencies {
     implementation(Deps.VIEW_MODEL)
     implementation(Deps.VIEW_MODEL_COMPOSE)
     implementation(Deps.VIEW_MODEL_SAVED_STATE)
+
+    androidTestImplementation(Deps.TEST_CORE)
+    androidTestImplementation(Deps.TEST_RUNNER)
+    androidTestImplementation(Deps.TEST_RULES)
+    androidTestImplementation(Deps.TEST_EXT_JUNIT)
+    androidTestImplementation(Deps.COMPOSE_TEST)
+    androidTestImplementation(Deps.UI_AUTOMATOR)
 }

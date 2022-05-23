@@ -18,7 +18,7 @@ package com.reach.uilayer.ui.taskdetail
 
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.viewModelScope
-import com.reach.base.UiStateViewModel
+import com.reach.commonandroid.UiStateViewModel
 import com.reach.datalayer.database.entities.Task
 import com.reach.datalayer.repository.TaskRepository
 import com.reach.domainlayer.UpdateTaskUseCase

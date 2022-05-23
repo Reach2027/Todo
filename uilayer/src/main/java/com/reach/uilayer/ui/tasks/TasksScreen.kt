@@ -46,6 +46,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.reach.datalayer.database.entities.Task
 import com.reach.uilayer.AniLoading
 import com.reach.uilayer.AppSelectedButton
@@ -62,7 +63,7 @@ import com.reach.uilayer.utils.calendarToString
 
 @Composable
 fun TasksScreen(
-    tasksViewModel: TasksViewModel,
+    tasksViewModel: TasksViewModel = hiltViewModel(),
     navTaskDetail: (String) -> Unit,
     navAddTask: () -> Unit,
 ) {

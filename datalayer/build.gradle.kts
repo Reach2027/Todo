@@ -22,6 +22,8 @@ plugins {
 }
 
 android {
+    namespace = "com.reach.datalayer"
+
     compileSdk = Versions.COMPILE_SDK
 
     defaultConfig {
@@ -60,9 +62,7 @@ android {
 
 dependencies {
     api(project(":commonkt"))
-    api(project(":base"))
-
-    implementation(Deps.COLLECTION)
+    api(project(":commonandroid"))
 
     implementation(Deps.COROUTINE_ANDROID)
     testImplementation(Deps.TEST_COROUTINE)
@@ -88,7 +88,10 @@ dependencies {
     testImplementation(Deps.JUNIT)
 
     testImplementation(Deps.TEST_CORE)
-    testImplementation(Deps.TEST_JUNIT)
+    testImplementation(Deps.TEST_EXT_JUNIT)
 
     testImplementation(Deps.ROBOLECTRIC)
+
+    androidTestImplementation(Deps.TEST_CORE)
+    androidTestImplementation(Deps.TEST_EXT_JUNIT)
 }

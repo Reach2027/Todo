@@ -40,13 +40,13 @@ object Versions {
     const val JVM = "1.8"
 
     // Plugins
-    const val AGP = "7.1.3"
+    const val AGP = "7.2.0"
 
-    const val KOTLIN = "1.6.10"
+    const val KOTLIN = "1.6.21"
 
-    const val KSP = "1.6.10-1.0.2"
+    const val KSP = "1.6.21-1.0.5"
 
-    const val SPOTLESS = "6.4.2"
+    const val SPOTLESS = "6.6.0"
     const val KT_LINT = "0.45.2"
 
     // SDK
@@ -66,18 +66,23 @@ object Versions {
     const val COLLECTION = "1.2.0"
     const val CORE = "1.7.0"
     const val ACTIVITY_COMPOSE = "1.4.0"
-    const val COMPOSE = "1.1.1"
-    const val ACC_NAV_ANIMATION = "0.23.1"
+    const val COMPOSE = "1.2.0-beta01"
+    const val ACCOMPANIST = "0.24.8-beta"
     const val LIFECYCLE = "2.4.1"
     const val NAVIGATION = "2.4.2"
-    const val HILT = "2.41"
+    const val HILT = "2.42"
     const val HILT_NAVIGATION_COMPOSE = "1.0.0"
     const val ROOM = "2.4.2"
-    const val COIL = "1.4.0"
+    const val COIL = "2.1.0"
 
     // Test
     const val JUNIT = "4.13.2"
+
     const val TEST_CORE = "1.4.0"
-    const val TEST_JUNIT = "1.1.3"
+    const val TEST_RUNNER = "1.4.0"
+    const val TEST_RULES = "1.4.0"
+    const val TEST_EXT_JUNIT = "1.1.3"
+
     const val ROBOLECTRIC = "4.7.3"
+    const val UI_AUTOMATOR = "2.2.0"
 }

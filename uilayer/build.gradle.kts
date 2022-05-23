@@ -22,6 +22,8 @@ plugins {
 }
 
 android {
+    namespace = "com.reach.uilayer"
+
     compileSdk = Versions.COMPILE_SDK
 
     defaultConfig {

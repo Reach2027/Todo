@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.reach.base
+package com.reach.commonandroid
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -28,7 +28,7 @@ interface BingService {
     suspend fun getImageUrl(
         @Query("format") format: String = "js",
         @Query("idx") idx: Int = 0,
-        @Query("n") n: Int = 1,
-        @Query("mkt") mkt: String = "zh-CN"
+        @Query("n") n: Int = 8,
+        @Query("ensearch") en: Int = 1
     ): BingResult
 }

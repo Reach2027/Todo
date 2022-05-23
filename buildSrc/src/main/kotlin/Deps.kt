@@ -62,11 +62,13 @@ object Deps {
     const val COMPOSE_UI = "androidx.compose.ui:ui:${Versions.COMPOSE}"
     const val COMPOSE_UI_TOOL = "androidx.compose.ui:ui-tooling:${Versions.COMPOSE}"
 
+    const val COMPOSE_TEST = "androidx.compose.ui:ui-test-junit4:${Versions.COMPOSE}"
+
     // Runtime
     const val COMPOSE_RUNTIME = "androidx.compose.runtime:runtime:${Versions.COMPOSE}"
 
     const val ACC_NAV_ANIMATION =
-        "com.google.accompanist:accompanist-navigation-animation:${Versions.ACC_NAV_ANIMATION}"
+        "com.google.accompanist:accompanist-navigation-animation:${Versions.ACCOMPANIST}"
 
     const val LIFECYCLE_COMMON = "androidx.lifecycle:lifecycle-common-java8:${Versions.LIFECYCLE}"
     const val LIFECYCLE_RUNTIME = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.LIFECYCLE}"
@@ -87,7 +89,11 @@ object Deps {
     const val JUNIT = "junit:junit:${Versions.JUNIT}"
 
     const val TEST_CORE = "androidx.test:core-ktx:${Versions.TEST_CORE}"
-    const val TEST_JUNIT = "androidx.test.ext:junit-ktx:${Versions.TEST_JUNIT}"
+    const val TEST_RUNNER = "androidx.test:runner:${Versions.TEST_RUNNER}"
+    const val TEST_RULES = "androidx.test:rules:${Versions.TEST_RULES}"
+    const val TEST_EXT_JUNIT = "androidx.test.ext:junit-ktx:${Versions.TEST_EXT_JUNIT}"
 
     const val ROBOLECTRIC = "org.robolectric:robolectric:${Versions.ROBOLECTRIC}"
+
+    const val UI_AUTOMATOR = "androidx.test.uiautomator:uiautomator:${Versions.UI_AUTOMATOR}"
 }
