@@ -41,7 +41,7 @@ import com.reach.uilayer.AniLoading
 import com.reach.uilayer.AppAnimatedVisibility
 import com.reach.uilayer.InputText
 import com.reach.uilayer.theme.TodoTheme
-import com.reach.uilayer.ui.activity.ActivityViewModel
+import com.reach.uilayer.ui.SharedViewModel
 
 /**
  * 2022/1/31  Reach
@@ -49,7 +49,7 @@ import com.reach.uilayer.ui.activity.ActivityViewModel
 
 @Composable
 fun EditTaskScreen(
-    activityViewModel: ActivityViewModel,
+    sharedViewModel: SharedViewModel,
     editTaskViewModel: EditTaskViewModel = hiltViewModel(),
     taskId: String,
     navBack: () -> Unit
@@ -67,21 +67,21 @@ fun EditTaskScreen(
     if (uiState.newTask) {
         fabAction = {
             if (uiState.content.text.isEmpty()) {
-                activityViewModel.showMessage("To Do cannot be empty")
+                sharedViewModel.showSnackbar("To Do cannot be empty")
             } else {
                 navBack()
                 editTaskViewModel.save()
-                activityViewModel.showMessage("To Do added")
+                sharedViewModel.showSnackbar("To Do added")
             }
         }
     } else {
         fabAction = {
             if (uiState.content.text.isEmpty()) {
-                activityViewModel.showMessage("To Do cannot be empty")
+                sharedViewModel.showSnackbar("To Do cannot be empty")
             } else {
                 navBack()
                 editTaskViewModel.update()
-                activityViewModel.showMessage("To Do saved")
+                sharedViewModel.showSnackbar("To Do saved")
             }
         }
     }

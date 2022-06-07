@@ -40,19 +40,19 @@ object Versions {
     const val JVM = "1.8"
 
     // Plugins
-    const val AGP = "7.2.0"
+    const val AGP = "7.2.1"
 
     const val KOTLIN = "1.6.21"
 
     const val KSP = "1.6.21-1.0.5"
 
-    const val SPOTLESS = "6.6.0"
+    const val SPOTLESS = "6.6.1"
     const val KT_LINT = "0.45.2"
 
     // SDK
-    const val COMPILE_SDK = 31
+    const val COMPILE_SDK = 32
     const val MIN_SDK = 23
-    const val TARGET_SDK = 31
+    const val TARGET_SDK = 32
 
     const val VERSION_CODE = 1
     const val VERSION_NAME = "0.0.1"
@@ -66,8 +66,8 @@ object Versions {
     const val COLLECTION = "1.2.0"
     const val CORE = "1.7.0"
     const val ACTIVITY_COMPOSE = "1.4.0"
-    const val COMPOSE = "1.2.0-beta01"
-    const val ACCOMPANIST = "0.24.8-beta"
+    const val COMPOSE = "1.2.0-beta03"
+    const val ACCOMPANIST = "0.24.10-beta"
     const val LIFECYCLE = "2.4.1"
     const val NAVIGATION = "2.4.2"
     const val HILT = "2.42"

@@ -20,6 +20,7 @@ import androidx.compose.runtime.Immutable
 import androidx.lifecycle.viewModelScope
 import com.reach.commonandroid.UiStateViewModel
 import com.reach.datalayer.BING_BASE_URL
+import com.reach.datalayer.remote.bing.BingImage
 import com.reach.datalayer.remote.bing.BingRemoteDataSource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.text.SimpleDateFormat
@@ -37,8 +38,10 @@ data class YouUiState(
     val isLoading: Boolean = true,
     val imageDate: String = "",
     val imageUrl: String = "",
-    val title: String = "",
-    val copyright: String = ""
+    val imageTitle: String = "",
+    val imageCopyright: String = "",
+    val beforeEnabled: Boolean = true,
+    val nextEnabled: Boolean = false,
 )
 
 @HiltViewModel
@@ -48,20 +51,43 @@ class YouViewModel @Inject constructor(
 
     private var imageIndex = 0
 
+    private lateinit var images: List<BingImage>
+
     init {
         viewModelScope.launch {
             bingDataSource.getImageInfo().collect { bingResult ->
-                val image = bingResult.images[imageIndex]
-                updateUiState {
-                    copy(
-                        isLoading = false,
-                        imageDate = processDate(image.enddate),
-                        imageUrl = BING_BASE_URL + image.url,
-                        title = image.title,
-                        copyright = image.copyright
-                    )
-                }
+                images = bingResult.images
+                imageIndex = 0
+                updateImage()
             }
+        }
+    }
+
+    fun changeImage(next: Boolean) {
+        viewModelScope.launch {
+            // updateUiState { copy(isLoading = true) }
+            // delay(300L)
+            if (next) {
+                imageIndex--
+            } else {
+                imageIndex++
+            }
+            updateImage()
+        }
+    }
+
+    private fun updateImage() {
+        val image = images[imageIndex]
+        updateUiState {
+            copy(
+                isLoading = false,
+                imageDate = processDate(image.enddate),
+                imageUrl = BING_BASE_URL + image.url,
+                imageTitle = image.title,
+                imageCopyright = image.copyright,
+                beforeEnabled = imageIndex < 7,
+                nextEnabled = imageIndex > 0
+            )
         }
     }
 
@@ -70,7 +96,7 @@ class YouViewModel @Inject constructor(
         calendar.set(
             date.substring(0, 4).toInt(),
             date.substring(4, 6).toInt() - 1,
-            date.substring(6, 8).toInt()
+            date.substring(6, 8).toInt() - 1
         )
         val format = SimpleDateFormat("M . d  -  yyyy", Locale.getDefault())
         return format.format(calendar.time)

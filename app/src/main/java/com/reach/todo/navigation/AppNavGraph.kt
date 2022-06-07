@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.reach.uilayer.navigation
+package com.reach.todo.navigation
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
@@ -28,7 +28,7 @@ import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.reach.uilayer.enter
 import com.reach.uilayer.exit
-import com.reach.uilayer.ui.activity.ActivityViewModel
+import com.reach.uilayer.ui.SharedViewModel
 import com.reach.uilayer.ui.edittask.EditTaskScreen
 import com.reach.uilayer.ui.statistics.StatisticsScreen
 import com.reach.uilayer.ui.taskdetail.TaskDetailScreen
@@ -41,7 +41,7 @@ import com.reach.uilayer.ui.you.YouScreen
 @ExperimentalAnimationApi
 @Composable
 fun AppNavGraph(
-    activityViewModel: ActivityViewModel,
+    sharedViewModel: SharedViewModel,
     navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
@@ -52,7 +52,7 @@ fun AppNavGraph(
         enterTransition = { enter() },
         exitTransition = { exit() }
     ) {
-        taskGraph(navController, activityViewModel)
+        taskGraph(navController, sharedViewModel)
 
         composable(AppDestination.STATISTICS) {
             StatisticsScreen()
@@ -67,7 +67,7 @@ fun AppNavGraph(
 @ExperimentalAnimationApi
 private fun NavGraphBuilder.taskGraph(
     navController: NavHostController,
-    activityViewModel: ActivityViewModel
+    sharedViewModel: SharedViewModel
 ) {
     navigation(startDestination = AppDestination.TASKS, route = "task") {
         composable(AppDestination.TASKS) {
@@ -87,7 +87,7 @@ private fun NavGraphBuilder.taskGraph(
                 throw IllegalArgumentException("TaskDetail arguments error")
             }
             TaskDetailScreen(
-                activityViewModel = activityViewModel,
+                sharedViewModel = sharedViewModel,
                 taskId = taskId,
                 navBack = navController.navBack(),
                 navEdit = { navController.navigate("$EDIT_TASK_START$taskId") }
@@ -102,14 +102,14 @@ private fun NavGraphBuilder.taskGraph(
                 throw IllegalArgumentException("EditTask arguments error")
             }
             EditTaskScreen(
-                activityViewModel = activityViewModel,
+                sharedViewModel = sharedViewModel,
                 taskId = taskId,
                 navBack = navController.navBack()
             )
         }
         composable(AppDestination.NEW_TASK) {
             EditTaskScreen(
-                activityViewModel = activityViewModel,
+                sharedViewModel = sharedViewModel,
                 taskId = "",
                 navBack = navController.navBack()
             )

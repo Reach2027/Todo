@@ -17,18 +17,26 @@
 package com.reach.uilayer.ui.you
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.NavigateBefore
+import androidx.compose.material.icons.rounded.NavigateNext
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -50,20 +58,13 @@ fun YouScreen(youViewModel: YouViewModel = hiltViewModel()) {
         AniLoading()
         return
     }
-    YouBody(
-        uiState.imageDate,
-        uiState.imageUrl,
-        uiState.title,
-        uiState.copyright
-    )
+    YouBody(uiState) { youViewModel.changeImage(it) }
 }
 
 @Composable
 fun YouBody(
-    picDate: String,
-    picUrl: String,
-    picTitle: String,
-    picCopyright: String
+    uiState: YouUiState,
+    changeImage: (Boolean) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -71,16 +72,38 @@ fun YouBody(
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(
-            text = picDate,
+        Row(
             modifier = Modifier.fillMaxWidth(),
-            style = MaterialTheme.typography.body1
-        )
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = uiState.imageDate,
+                modifier = Modifier.weight(weight = 1f, fill = true),
+                style = MaterialTheme.typography.body1
+            )
+            Icon(
+                imageVector = Icons.Rounded.NavigateBefore,
+                contentDescription = "before",
+                modifier = Modifier
+                    .size(48.dp, 48.dp)
+                    .clickable(enabled = uiState.beforeEnabled) { changeImage(false) }
+                    .alpha(if (uiState.beforeEnabled) 0.7f else 0.05f)
+            )
+            Icon(
+                imageVector = Icons.Rounded.NavigateNext,
+                contentDescription = "next",
+                modifier = Modifier
+                    .padding(start = 48.dp)
+                    .size(48.dp, 48.dp)
+                    .clickable(enabled = uiState.nextEnabled) { changeImage(true) }
+                    .alpha(if (uiState.nextEnabled) 0.7f else 0.05f)
+            )
+        }
         Image(
             painter = rememberAsyncImagePainter(
                 ImageRequest.Builder(LocalContext.current)
-                    .data(data = picUrl)
-                    .crossfade(700)
+                    .data(data = uiState.imageUrl)
+                    .crossfade(500)
                     .transformations(RoundedCornersTransformation(32f))
                     .size(1920, 1080)
                     .build()
@@ -88,17 +111,17 @@ fun YouBody(
             contentDescription = "Bing image of the day",
             modifier = Modifier
                 .wrapContentWidth()
-                .padding(top = 16.dp),
+                .padding(top = 16.dp)
         )
         Text(
-            text = picTitle,
+            text = uiState.imageTitle,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 16.dp),
             style = MaterialTheme.typography.body1
         )
         Text(
-            text = picCopyright,
+            text = uiState.imageCopyright,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 16.dp),

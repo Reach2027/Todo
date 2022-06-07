@@ -21,21 +21,23 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.animation.ExperimentalAnimationApi
-import com.reach.uilayer.ui.activity.ActivityScreen
-import com.reach.uilayer.ui.activity.ActivityViewModel
+import com.reach.uilayer.ui.SharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @ExperimentalAnimationApi
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
+    @Inject lateinit var activityPresenter: ActivityPresenter
+
+    private val sharedViewModel: SharedViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val activityViewModel: ActivityViewModel by viewModels()
-
         setContent {
-            ActivityScreen(activityViewModel)
+            ActivityScreen(activityPresenter, sharedViewModel)
         }
     }
 }

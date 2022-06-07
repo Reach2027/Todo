@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.reach.uilayer.ui.activity
+package com.reach.todo
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.fillMaxSize
@@ -28,7 +28,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.ArrowBackIos
+import androidx.compose.material.icons.rounded.ArrowBackIos
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -38,12 +38,12 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
-import com.reach.uilayer.navigation.AppNavGraph
-import com.reach.uilayer.navigation.BottomSections
-import com.reach.uilayer.navigation.navBack
-import com.reach.uilayer.navigation.navToBottomBarRoute
+import com.reach.todo.navigation.AppNavGraph
+import com.reach.todo.navigation.BottomSections
+import com.reach.todo.navigation.navBack
+import com.reach.todo.navigation.navToBottomBarRoute
 import com.reach.uilayer.theme.TodoTheme
-import kotlinx.coroutines.flow.collectLatest
+import com.reach.uilayer.ui.SharedViewModel
 import kotlinx.coroutines.launch
 
 /**
@@ -51,17 +51,17 @@ import kotlinx.coroutines.launch
  */
 @ExperimentalAnimationApi
 @Composable
-fun ActivityScreen(activityViewModel: ActivityViewModel) {
+fun ActivityScreen(
+    activityPresenter: ActivityPresenter,
+    sharedViewModel: SharedViewModel
+) {
 
     val scaffoldState = rememberScaffoldState()
     // Snackbar
     LaunchedEffect(scaffoldState.snackbarHostState) {
         launch {
-            activityViewModel.snackbarMessage.collectLatest { message ->
-                if (message.isNotEmpty()) {
-                    scaffoldState.snackbarHostState.showSnackbar(message)
-                    activityViewModel.showMessage("")
-                }
+            sharedViewModel.snackbarEvent.collect { message ->
+                scaffoldState.snackbarHostState.showSnackbar(message)
             }
         }
     }
@@ -71,8 +71,8 @@ fun ActivityScreen(activityViewModel: ActivityViewModel) {
         val currentRoute: String? =
             navController.currentBackStackEntryAsState().value?.destination?.route
 
-        activityViewModel.setCurrentRoute(currentRoute)
-        val uiState by activityViewModel.uiState.collectAsState()
+        activityPresenter.setCurrentRoute(currentRoute)
+        val uiState by activityPresenter.uiState.collectAsState()
 
         Scaffold(
             modifier = Modifier.fillMaxSize(),
@@ -94,7 +94,7 @@ fun ActivityScreen(activityViewModel: ActivityViewModel) {
             }
         ) { innerPadding ->
             AppNavGraph(
-                activityViewModel = activityViewModel,
+                sharedViewModel = sharedViewModel,
                 navController = navController,
                 modifier = Modifier
                     .padding(innerPadding)
@@ -133,7 +133,7 @@ private fun AppBackIcon(
         modifier = modifier
     ) {
         Icon(
-            imageVector = Icons.Outlined.ArrowBackIos,
+            imageVector = Icons.Rounded.ArrowBackIos,
             contentDescription = "Back"
         )
     }

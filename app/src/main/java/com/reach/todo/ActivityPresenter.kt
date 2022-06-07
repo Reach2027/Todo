@@ -14,26 +14,25 @@
  * limitations under the License.
  */
 
-package com.reach.uilayer.ui.activity
+package com.reach.todo
 
-import com.reach.commonandroid.UiStateViewModel
-import com.reach.uilayer.navigation.AppDestination
-import com.reach.uilayer.navigation.BottomSections
-import com.reach.uilayer.navigation.TITLE_EDIT_TASK
-import com.reach.uilayer.navigation.TITLE_NEW_TASK
-import com.reach.uilayer.navigation.TITLE_STATISTICS
-import com.reach.uilayer.navigation.TITLE_TASKS
-import com.reach.uilayer.navigation.TITLE_TASK_DETAIL
-import com.reach.uilayer.navigation.TITLE_YOU
-import dagger.hilt.android.lifecycle.HiltViewModel
+import com.reach.todo.navigation.AppDestination
+import com.reach.todo.navigation.BottomSections
+import com.reach.todo.navigation.TITLE_EDIT_TASK
+import com.reach.todo.navigation.TITLE_NEW_TASK
+import com.reach.todo.navigation.TITLE_STATISTICS
+import com.reach.todo.navigation.TITLE_TASKS
+import com.reach.todo.navigation.TITLE_TASK_DETAIL
+import com.reach.todo.navigation.TITLE_YOU
 import javax.inject.Inject
+import javax.inject.Singleton
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 
 /**
- * 2022/2/4  Reach
+ * 2022/6/1  Reach
  */
-
 data class ActivityUiState(
     val currentRoute: String = AppDestination.STATISTICS,
     val title: String = TITLE_STATISTICS,
@@ -46,12 +45,12 @@ data class ActivityUiState(
     )
 )
 
-@HiltViewModel
-class ActivityViewModel @Inject constructor() :
-    UiStateViewModel<ActivityUiState>(ActivityUiState()) {
+@Singleton
+class ActivityPresenter @Inject constructor() {
 
-    private val _snackbarMessage = MutableStateFlow("")
-    val snackbarMessage = _snackbarMessage.asStateFlow()
+    private val _uiState = MutableStateFlow(ActivityUiState())
+
+    val uiState = _uiState.asStateFlow()
 
     private val bottomRoutes = listOf(
         AppDestination.TASKS,
@@ -64,18 +63,14 @@ class ActivityViewModel @Inject constructor() :
             return
         }
         val showBottomBar = currentRoute in bottomRoutes
-        updateUiState {
-            copy(
+        _uiState.update {
+            it.copy(
                 currentRoute = currentRoute,
                 title = obtainCurrentTitle(currentRoute),
                 showBottomBar = showBottomBar,
                 showBackIcon = !showBottomBar
             )
         }
-    }
-
-    fun showMessage(content: String) {
-        _snackbarMessage.value = content
     }
 
     private fun obtainCurrentTitle(route: String) = when (route) {

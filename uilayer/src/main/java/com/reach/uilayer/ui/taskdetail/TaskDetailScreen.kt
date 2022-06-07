@@ -45,7 +45,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.reach.datalayer.database.entities.Task
 import com.reach.uilayer.AniLoading
 import com.reach.uilayer.theme.TodoTheme
-import com.reach.uilayer.ui.activity.ActivityViewModel
+import com.reach.uilayer.ui.SharedViewModel
 import com.reach.uilayer.utils.calendarToString
 
 /**
@@ -54,7 +54,7 @@ import com.reach.uilayer.utils.calendarToString
 
 @Composable
 fun TaskDetailScreen(
-    activityViewModel: ActivityViewModel,
+    sharedViewModel: SharedViewModel,
     taskDetailViewModel: TaskDetailViewModel = hiltViewModel(),
     taskId: String,
     navBack: () -> Unit,
@@ -76,7 +76,7 @@ fun TaskDetailScreen(
         delete = {
             taskDetailViewModel.delete(it)
             navBack()
-            activityViewModel.showMessage("To Do was deleted")
+            sharedViewModel.showSnackbar("To Do was deleted")
         },
         navEdit = navEdit
     )

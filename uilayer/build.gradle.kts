@@ -71,8 +71,6 @@ dependencies {
     implementation(Deps.HILT_ANDROID)
     kapt(Deps.HILT_COMPILER)
 
-    implementation(Deps.NAVIGATION)
-
     implementation(Deps.HILT_NAVIGATION_COMPOSE)
 
     implementation(Deps.CORE)
@@ -90,8 +88,6 @@ dependencies {
     debugImplementation(Deps.COMPOSE_UI_TOOL)
     implementation(Deps.COMPOSE_RUNTIME)
 
-    implementation(Deps.ACC_NAV_ANIMATION)
-
     // Lifecycle
     implementation(Deps.LIFECYCLE_COMMON)
     implementation(Deps.LIFECYCLE_RUNTIME)
@@ -100,6 +96,5 @@ dependencies {
     implementation(Deps.VIEW_MODEL_SAVED_STATE)
 
     // Coil
-    implementation(Deps.COIL)
     implementation(Deps.COIL_COMPOSE)
 }

@@ -89,6 +89,10 @@ dependencies {
     implementation(Deps.HILT_ANDROID)
     kapt(Deps.HILT_COMPILER)
 
+    implementation(Deps.NAVIGATION)
+
+    implementation(Deps.HILT_NAVIGATION_COMPOSE)
+
     implementation(Deps.CORE)
 
     implementation(Deps.ACTIVITY_COMPOSE)
@@ -103,6 +107,8 @@ dependencies {
     implementation(Deps.COMPOSE_UI_TOOL)
     debugImplementation(Deps.COMPOSE_UI_TOOL)
     implementation(Deps.COMPOSE_RUNTIME)
+
+    implementation(Deps.ACC_NAV_ANIMATION)
 
     // Lifecycle
     implementation(Deps.LIFECYCLE_COMMON)
