@@ -16,6 +16,7 @@
 
 package com.reach.uilayer.ui.you
 
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -103,8 +104,8 @@ fun YouBody(
             painter = rememberAsyncImagePainter(
                 ImageRequest.Builder(LocalContext.current)
                     .data(data = uiState.imageUrl)
-                    .crossfade(500)
-                    .transformations(RoundedCornersTransformation(32f))
+                    .crossfade(600)
+                    .transformations(RoundedCornersTransformation(64f))
                     .size(1920, 1080)
                     .build()
             ),
@@ -112,19 +113,22 @@ fun YouBody(
             modifier = Modifier
                 .wrapContentWidth()
                 .padding(top = 16.dp)
+                .animateContentSize()
         )
         Text(
             text = uiState.imageTitle,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 16.dp),
+                .padding(top = 16.dp)
+                .animateContentSize(),
             style = MaterialTheme.typography.body1
         )
         Text(
             text = uiState.imageCopyright,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 16.dp),
+                .padding(top = 16.dp)
+                .animateContentSize(),
             style = MaterialTheme.typography.body2
         )
     }

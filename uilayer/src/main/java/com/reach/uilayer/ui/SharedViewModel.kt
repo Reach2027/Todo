@@ -18,9 +18,10 @@ package com.reach.uilayer.ui
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
+import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import javax.inject.Inject
 
 /**
  * 2022/2/4  Reach
@@ -29,7 +30,11 @@ import kotlinx.coroutines.flow.asSharedFlow
 @HiltViewModel
 class SharedViewModel @Inject constructor() : ViewModel() {
 
-    private val _snackbarEvent = MutableSharedFlow<String>(replay = 0, extraBufferCapacity = 1)
+    private val _snackbarEvent = MutableSharedFlow<String>(
+        replay = 0,
+        extraBufferCapacity = 1,
+        onBufferOverflow = BufferOverflow.SUSPEND
+    )
     val snackbarEvent = _snackbarEvent.asSharedFlow()
 
     fun showSnackbar(message: String) {

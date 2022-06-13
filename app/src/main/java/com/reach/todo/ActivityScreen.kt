@@ -44,6 +44,7 @@ import com.reach.todo.navigation.navBack
 import com.reach.todo.navigation.navToBottomBarRoute
 import com.reach.uilayer.theme.TodoTheme
 import com.reach.uilayer.ui.SharedViewModel
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 /**
@@ -60,7 +61,7 @@ fun ActivityScreen(
     // Snackbar
     LaunchedEffect(scaffoldState.snackbarHostState) {
         launch {
-            sharedViewModel.snackbarEvent.collect { message ->
+            sharedViewModel.snackbarEvent.collectLatest { message ->
                 scaffoldState.snackbarHostState.showSnackbar(message)
             }
         }
