@@ -20,18 +20,18 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import javax.inject.Singleton
 
 /**
  * 2022/4/10  Reach
  */
 @InstallIn(SingletonComponent::class)
 @Module
-class CoroutineModule {
+object CoroutineModule {
 
     @DefaultDispatcher
     @Provides

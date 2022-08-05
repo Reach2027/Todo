@@ -31,12 +31,12 @@ import javax.inject.Singleton
  */
 @InstallIn(SingletonComponent::class)
 @Module
-class DatabaseModule {
+object DatabaseModule {
 
     @Singleton
     @Provides
     fun provideAppDatabase(@ApplicationContext context: Context): AppDatabase {
-        return AppDatabase.getInstance(context)
+        return AppDatabase.buildDatabase(context)
     }
 
     @Provides

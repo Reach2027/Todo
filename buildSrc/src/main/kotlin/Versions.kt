@@ -42,12 +42,12 @@ object Versions {
     // Plugins
     const val AGP = "7.2.1"
 
-    const val KOTLIN = "1.6.21"
+    const val KOTLIN = "1.7.0"
 
-    const val KSP = "1.6.21-1.0.5"
+    const val KSP = "1.7.0-1.0.6"
 
-    const val SPOTLESS = "6.6.1"
-    const val KT_LINT = "0.45.2"
+    const val SPOTLESS = "6.9.0"
+    const val KT_LINT = "0.46.1"
 
     // SDK
     const val COMPILE_SDK = 32
@@ -58,21 +58,21 @@ object Versions {
     const val VERSION_NAME = "0.0.1"
 
     // JVM Dependencies
-    const val COROUTINE = "1.6.1"
+    const val COROUTINE = "1.6.4"
     const val RETROFIT2 = "2.9.0"
     const val MOSHI = "1.13.0"
 
     // Android Dependencies
     const val COLLECTION = "1.2.0"
-    const val CORE = "1.7.0"
-    const val ACTIVITY_COMPOSE = "1.4.0"
-    const val COMPOSE = "1.2.0-beta03"
-    const val ACCOMPANIST = "0.24.10-beta"
-    const val LIFECYCLE = "2.4.1"
+    const val CORE = "1.8.0"
+    const val ACTIVITY_COMPOSE = "1.5.1"
+    const val COMPOSE = "1.2.0"
+    const val ACCOMPANIST = "0.25.0"
+    const val LIFECYCLE = "2.5.1"
     const val NAVIGATION = "2.4.2"
-    const val HILT = "2.42"
+    const val HILT = "2.43.2"
     const val HILT_NAVIGATION_COMPOSE = "1.0.0"
-    const val ROOM = "2.4.2"
+    const val ROOM = "2.4.3"
     const val COIL = "2.1.0"
 
     // Test

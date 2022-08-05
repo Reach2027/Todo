@@ -36,15 +36,7 @@ abstract class AppDatabase : RoomDatabase() {
 
     companion object {
 
-        @Volatile
-        private var instance: AppDatabase? = null
-
-        fun getInstance(context: Context): AppDatabase = instance
-            ?: synchronized(this) {
-                instance ?: buildDatabase(context).also { instance = it }
-            }
-
-        private fun buildDatabase(context: Context) = Room
+        fun buildDatabase(context: Context) = Room
             .databaseBuilder(context, AppDatabase::class.java, DATABASE_NAME)
             .build()
     }

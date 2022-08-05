@@ -18,11 +18,12 @@ package com.reach.datalayer.repository
 
 import com.reach.datalayer.database.entities.Task
 import com.reach.datalayer.local.task.TaskLocalDataSource
+import javax.inject.Inject
 
 /**
  * 2022/1/31  Reach
  */
-class DefaultTaskRepository(
+class DefaultTaskRepository @Inject constructor(
     private val taskLocalDataSource: TaskLocalDataSource
 ) : TaskRepository {
 

@@ -16,38 +16,30 @@
 
 package com.reach.datalayer.di
 
-import com.reach.commonkt.di.IoDispatcher
-import com.reach.datalayer.database.daos.TaskDao
 import com.reach.datalayer.local.task.DefaultTaskLocalDataSource
 import com.reach.datalayer.local.task.TaskLocalDataSource
 import com.reach.datalayer.repository.DefaultTaskRepository
 import com.reach.datalayer.repository.TaskRepository
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
-import kotlinx.coroutines.CoroutineDispatcher
 
 /**
  * 2022/3/17  Reach
  */
 @InstallIn(SingletonComponent::class)
 @Module
-class TaskDataModule {
+abstract class TaskDataModule {
 
     @Singleton
-    @Provides
-    fun provideTaskLocalTaskSource(
-        @IoDispatcher dispatcher: CoroutineDispatcher,
-        taskDao: TaskDao
-    ): TaskLocalDataSource {
-        return DefaultTaskLocalDataSource(dispatcher, taskDao)
-    }
+    @Binds
+    abstract fun bindTaskLocalTaskSource(localDataSource: DefaultTaskLocalDataSource)
+        : TaskLocalDataSource
 
     @Singleton
-    @Provides
-    fun provideTaskRepository(taskLocalDataSource: TaskLocalDataSource): TaskRepository {
-        return DefaultTaskRepository(taskLocalDataSource)
-    }
+    @Binds
+    abstract fun bindTaskRepository(taskLocalDataSource: DefaultTaskRepository)
+        : TaskRepository
 }

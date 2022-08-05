@@ -25,15 +25,15 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 import kotlinx.coroutines.CoroutineDispatcher
+import javax.inject.Singleton
 
 /**
  * 2022/4/16  Reach
  */
 @InstallIn(SingletonComponent::class)
 @Module
-class BingDataModule {
+object BingDataModule {
 
     @Singleton
     @Provides
